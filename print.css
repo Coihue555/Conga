@@ -1,0 +1,10 @@
+@media print {
+    .sidebar,
+    #clAc,
+    #clAc2,
+    .btn-success,
+    .btn-default,
+    .btn-danger {
+        display: none;
+    }
+}
