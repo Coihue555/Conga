@@ -53,48 +53,66 @@
 											<form method="post" action="add.php">
 											<div class="form-group">
 												<div class="row">
-													<div class="col md 12">
-													<select class="form-control" name="cuenta" required>
-															<option selected disabled>Cuenta</option>
-															<option value="Sant Deb">Sant Deb</option>
-															<option value="Efectivo">Efectivo</option>
-															<option value="Nac Andy">Nac Andy</option>
-															<option value="Naranja">Naranja</option>
-															<option value="Yaca Andy">Yaca Andy</option>
-															<option value="Yaca Dani">Yaca Dani</option>
+													<div class="col-md-6">
+														<?php
+															$sql = "SELECT * FROM cuentas";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='cuenta' required>";
+																echo "<option selected disabled>Cuenta</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
+																}
+																echo "</select>";
+															} 
+														?>
+													</div>
+													<div class="col-md-6">
+													<select class="form-control" name="usuario" required>
+															<option selected disabled>Usuario</option>
+															<option value="Dani">Dani</option>
+															<option value="Andy">Andy</option>
 														</select>
 													</div>
 												</div>
+												<br>
 												<div class="row">
-													<div class="col-md-6"><label>Fecha</label>
+													<div class="col-md-6">
 														<input type="date" required id="fecha" name="fecha">
 													</div>
-													<div class="col-md-6"><label>Valor</label>
-														<input type="text" required name="valor" class="form-control">
+													<div class="col-md-6">
+														<input type="text" required name="valor" class="form-control" placeholder="$0.00">
 													</div>
 												</div>
+												<br>
 												<div class="row">
-													<div class="col-md-12"><label>Detalle</label>
-														<input type="text" required name="detalle" class="form-control">
+													<div class="col-md-12">
+														<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
 													</div>
 												</div>
-												<p></p>
+												<br>
 												<div class="row">
 													<div class="col-md-6 btn-group" role="group">
 														<button type="button" class="btn btn-outline-primary">Transfer</button>
 														<button type="button" class="btn btn-outline-primary">Gasto</button>
 														<button type="button" class="btn btn-outline-primary">Ingreso</button>
 													</div>
-													<div class="col-md-5"><label>Categoria</label>
-														<select class="form-control" name="categoria" required>
-															<option selected disabled>Categoria</option>
-															<option value="Comida">Comida</option>
-															<option value="Salud">Salud</option>
-															<option value="Limpieza">Limpieza</option>
-															<option value="Casa">Casa</option>
-															<option value="Viajes">Viajes</option>
-															<option value="Extra">Extra</option>
-														</select>
+													<div class="col-md-6">
+														<?php
+															$sql = "SELECT * FROM categorias";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='categoria' required>";
+																echo "<option selected disabled>Categoria</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																}
+																echo "</select>";
+															} 
+														?>
+
 													</div>
 												</div>
 												<p></p>
@@ -102,11 +120,9 @@
 												
 											
 												<br>
-												<input type="submit" name="send" value="Agregar" class="btn btn-success">
+												<button style="float: left;" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+												<input style="float: right;" type="submit" name="send" value="Agregar" class="btn btn-success">
 											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 										</div>
 									</div>
 								</div>
@@ -138,8 +154,8 @@
 								<?php while($row = $rows->fetch_assoc()): ?>						
 										<td><?php echo $row['id'] ?></td>
 										<td><?php echo $row['fecha'] ?></td>
-										<td><?php echo $row['valor'] ?> </td>
-										<td><?php echo $row['categoria'] ?> </td>
+										<td>$<?php echo $row['valor'] ?> </td>
+										<td><?php echo $row['Categoria'] ?> </td>
 										<td><?php echo $row['cuenta'] ?> </td>
 										<td><?php echo $row['detalle'] ?> </td>
 										<td><?php echo $row['usuario'] ?> </td>
@@ -161,7 +177,7 @@
 								<?php endwhile; ?>
 							</tbody>
 						</table>
-						
+
 						<script>
 							function sortTable(n) {
 							var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
