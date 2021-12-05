@@ -4,7 +4,14 @@ session_start();
 if(isset($_POST['send'])){
 
 $fecha = htmlspecialchars($_POST['fecha']);
-$valor = htmlspecialchars($_POST['valor']);
+
+if ($_POST['tipoCuen']=='0') {
+	$valor = htmlspecialchars(-$_POST['valor']);
+} elseif ($_POST['tipoCuen']==='1'){
+	$valor = htmlspecialchars($_POST['valor']);
+}
+
+
 $categoria = htmlspecialchars($_POST['Categoria']);
 $detalle = htmlspecialchars($_POST['detalle']);
 $cuenta = htmlspecialchars($_POST['cuenta']);
@@ -16,9 +23,14 @@ $cuenta = htmlspecialchars($_POST['cuenta']);
 		}
 
 
-$sql = "insert into movimientos (fecha, valor, Categoria, detalle, cuenta, usuario) values ('$fecha', '$valor', '$categoria','$detalle', '$cuenta', '$usuario')";
+$sql = "INSERT INTO movimientos (fecha, valor, Categoria, detalle, cuenta, usuario) values ('$fecha', '$valor', '$categoria','$detalle', '$cuenta', '$usuario')";
 
 $val = $db->query($sql);
+
+
+
+
+
 
 //printf("Errormessage: %s\n", $db->error);
 //die();

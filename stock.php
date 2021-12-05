@@ -32,11 +32,50 @@
 			<title> Control de Gastos </title>
 		</head>
 		<body>
+<?php include 'navbar.php' ?>
+<?php include 'func.php' ?>
 
-			<div class="container-fluid"><center><h2>Control de Gastos</h2></center>
+			<div class="container-fluid">
 				<div class="row" style="margin-top: 70px;">
 					<div class="col-md-12 col-md-offset-1" >
 						<table class="table">
+							<div class="col-md-12">
+								<?php
+									$sql = "SELECT TRUNCATE(SUM(totalParcial), 2) AS valor_suma FROM cuentas WHERE totalParcial > 0";
+									$result = $db->query($sql);
+
+									if ($result->num_rows > 0) {
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											echo "<button type='button' class='btn btn-success'>Total<br> <span class='badge bg-secondary'>$" . $row['valor_suma']."</span></button>			";
+										}
+									}
+
+									$sql = "SELECT * FROM cuentas ORDER BY totalParcial DESC";
+									$result = $db->query($sql);
+									if ($result->num_rows > 0) {
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											echo "<button type='button' class='btn btn-primary'>". $row['nomCuen'] . "<br> <span class='badge bg-secondary'>$". $row['totalParcial'] . "</span></button>	     ";
+											}
+																					
+									} 
+
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma_cuenta FROM movimientos WHERE cuenta='Efectivo'";
+									$result = $db->query($sql);
+
+									if ($result->num_rows > 0) {
+										// output data of each row
+										while($row = $result->fetch_assoc()) {
+											echo "<button type='button' class='btn btn-success'>EfetBysql<br> <span class='badge bg-secondary'>$" . $row['valor_suma_cuenta']."</span></button>			";
+										}
+									}
+
+
+
+								?>
+							</div>
+								
 							<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success pull-right">Nuevo</button>
 							<button type="button" class="btn btn-default pull-right" onclick="print()">Imprimir</button>
 							<hr><br>
@@ -50,7 +89,7 @@
 											<button type="button" class="btn btn-close" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body">
-											<form method="post" action="add.php">
+											<form method="post" action="addMov.php">
 											<div class="form-group">
 												<div class="row">
 													<div class="col-md-6">
@@ -93,17 +132,56 @@
 												</div>
 												<br>
 												<div class="row">
-													<div class="col-md-6 btn-group" role="group">
-														<button type="button" class="btn btn-outline-primary">Transfer</button>
-														<button type="button" class="btn btn-outline-primary">Gasto</button>
-														<button type="button" class="btn btn-outline-primary">Ingreso</button>
-													</div>
 													<div class="col-md-6">
+														<select class="form-control" id="tipoCuen" name="tipoCuen">
+															<option selected disabled>Tipo</option>
+															<option value="2" disabled>Transfer</option>
+															<option value="0">Gasto</option>
+															<option value="1">Ingreso</option>
+														</select>
+													</div>
+
+														<script>$(document).ready(function(){
+																$('#tipoCuen').on('change', function() {
+																if ( this.value == '0')
+																{
+																	$("#gasto").show();
+																}
+																else
+																{
+																	$("#gasto").hide();
+																}
+																});
+															});
+														</script>
+
+														<script>$(document).ready(function(){
+																$('#tipoCuen').on('change', function() {
+																if ( this.value == '1')
+																{
+																	$("#ingreso").show();
+																}
+																else
+																{
+																	$("#ingreso").hide();
+																}
+																});
+															});
+														</script>
+
+
+
+
+
+
+														
+													
+													<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
 														<?php
-															$sql = "SELECT * FROM categorias";
+															$sql = "SELECT * FROM categorias WHERE tipoCat=0";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='categoria' required>";
+																echo "<select class='form-control' name='Categoria' required>";
 																echo "<option selected disabled>Categoria</option>";
 																// output data of each row
 																while($row = $result->fetch_assoc()) {
@@ -114,6 +192,24 @@
 														?>
 
 													</div>
+
+													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
+														<?php
+															$sql = "SELECT * FROM categorias WHERE tipoCat=1";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='Categoria' required>";
+																echo "<option selected disabled>Categoria</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																}
+																echo "</select>";
+															} 
+														?>
+
+													</div>
+
 												</div>
 												<p></p>
 												
