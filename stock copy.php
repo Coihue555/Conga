@@ -218,7 +218,7 @@
 					</div>
 
 					<div class="col-md-12">
-						<table >
+						<table class="table table-hover" id="myTable" style="overflow-x:auto; max-width:100%">
 							<thead>
 								<tr>
 									<th onclick="sortTable(0)">ID</th>
