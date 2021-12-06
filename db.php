@@ -2,7 +2,7 @@
 
 $db = new Mysqli;
 
-//$db->connect('localhost','u827750786_trips','Pajaromadera!1234','u827750786_trips');
+//$db->connect('localhost','u977804429_andy','Pajaromadera!555','u977804429_code');
 $db->connect('localhost','admin','admin','conga');
 if(!$db){
 

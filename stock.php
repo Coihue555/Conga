@@ -24,6 +24,7 @@
 	?>
 	<html>
 		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<script src="jquery.min.js"></script>
 			<script src="bootstrap.min.js"></script>
 			<link rel="stylesheet" href="bootstrap.min.css">
@@ -32,16 +33,16 @@
 			<title> Control de Gastos </title>
 		</head>
 		<body>
-<?php include 'navbar.php' ?>
-<?php include 'func.php' ?>
+			<?php include 'navbar.php' ?>
 
 			<div class="container-fluid">
 				<div class="row" style="margin-top: 70px;">
-					<div class="col-md-12 col-md-offset-1" >
+					<div class="col-md-12" >
 						<table class="table">
 							<div class="col-md-12">
 								<?php
-									$sql = "SELECT TRUNCATE(SUM(totalParcial), 2) AS valor_suma FROM cuentas WHERE totalParcial > 0";
+									// Saldo total
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE valor > 0";
 									$result = $db->query($sql);
 
 									if ($result->num_rows > 0) {
@@ -51,23 +52,14 @@
 										}
 									}
 
-									$sql = "SELECT * FROM cuentas ORDER BY totalParcial DESC";
-									$result = $db->query($sql);
-									if ($result->num_rows > 0) {
-										// output data of each row
-										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-primary'>". $row['nomCuen'] . "<br> <span class='badge bg-secondary'>$". $row['totalParcial'] . "</span></button>	     ";
-											}
-																					
-									} 
-
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma_cuenta FROM movimientos WHERE cuenta='Efectivo'";
+									//Resto de las cuentas
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) 'Parcial', cuenta 'Cuenta' FROM movimientos GROUP BY cuenta";
 									$result = $db->query($sql);
 
 									if ($result->num_rows > 0) {
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-success'>EfetBysql<br> <span class='badge bg-secondary'>$" . $row['valor_suma_cuenta']."</span></button>			";
+											echo "<button type='button' class='btn btn-primary'>" . $row['Cuenta']."<br> <span class='badge bg-secondary'>$" . $row['Parcial']."</span></button>			";
 										}
 									}
 
@@ -75,8 +67,8 @@
 
 								?>
 							</div>
-								
-							<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success pull-right">Nuevo</button>
+							<hr><br>	
+							<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-primary pull-right">Nuevo</button>
 							<button type="button" class="btn btn-default pull-right" onclick="print()">Imprimir</button>
 							<hr><br>
 						 <!-- Modal -->
@@ -88,7 +80,7 @@
 											<h4 class="modal-title">Agregar</h4>
 											<button type="button" class="btn btn-close" data-dismiss="modal">&times;</button>
 										</div>
-										<div class="modal-body">
+										<div class="modal-body col-md-12">
 											<form method="post" action="addMov.php">
 											<div class="form-group">
 												<div class="row">
@@ -225,17 +217,11 @@
 							</div>
 					</div>
 
-					<div id="clAc2" class="col-md-12 text-center">
-						<form action="search.php" method="post" class="form-group">
-							<input type="text" placeholder="Buscar..." name="search" class="form-control">
-						</form>
-					</div>
-
 					<div class="col-md-12">
-						<table class="table table-hover" id="myTable" style="font-size:0.7em; table-layout: auto; width: 100%; ">
+						<table class="table table-hover" id="myTable" style="overflow-x:auto; max-width:100%">
 							<thead>
 								<tr>
-									<th>ID</th>
+									<th onclick="sortTable(0)">ID</th>
 									<th onclick="sortTable(1)">Fecha de ingr</th>
 									<th onclick="sortTable(2)">Valor</th>
 									<th onclick="sortTable(3)">Categoria</th>
@@ -256,13 +242,13 @@
 										<td><?php echo $row['detalle'] ?> </td>
 										<td><?php echo $row['usuario'] ?> </td>
 										<td class="btn-group">
-											<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-success">
+											<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 													<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 													<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
 												</svg>
 											</a>
-											<a href="delete.php?id=<?php echo $row['id'];?>" class="btn btn-sm btn-danger">
+											<a href="delete.php?id=<?php echo $row['id'];?>" class="btn btn-sm btn-primary">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 													<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
 													<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>

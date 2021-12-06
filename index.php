@@ -55,17 +55,15 @@
 
 		<div class="row">
 		<div class="col-lg-6">
-				<img src="logo.png">
+				<img src="logo.png" style="max-width: 70%;">
 		</div>
 		<div class="col-lg-6">
 				<div class="banner-contact-form bg-white">
 						<form action="sesion.php" method="post">
 						  <div class="form-group">
-						    <label for="nombre">Nombre</label>
 						    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
 						  </div>
 						  <div class="form-group">
-						    <label for="pass">Password</label>
 						    <input type="password" class="form-control" name="pass" placeholder="Password">
 						  </div>
 						  <button type="submit" class="btn btn-primary">Entrar</button>
