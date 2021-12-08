@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-
+<?php
+	// Initialize the session
+	session_start();
+	
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: register.php");
+		exit;
+	}
+	?>
 <?php include 'db.php';
+include 'navbar.php';
 
 $id= (int)$_GET['id'];
 
@@ -57,13 +67,13 @@ header('location: categorias.php');
 										<div class="row">
 											<div class="col-md-6"><label>Tipo de categoria</label>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="0" checked>
+														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
 														<label class="form-check-label" for="0">
 															Gasto
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="1">
+														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
 														<label class="form-check-label" for="1">
 															Ingreso
 														</label>
@@ -76,8 +86,8 @@ header('location: categorias.php');
 											</div>
 										</div>								
 									</div>
-									 <input type="submit" name="send" value="Agregar Registro" class="btn btn-success">&nbsp;
-								 <a href="categorias.php" class="btn btn-warning">Volver</a>
+									 <input type="submit" name="send" value="Agregar Registro" class="btn btn-primary">&nbsp;
+								 <a href="categorias.php" class="btn btn-primary">Volver</a>
 							</form>
 				    	</div>
 			 	  </div>

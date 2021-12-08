@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 	<?php
-		session_start();
-		if(isset($_SESSION['verificado'])){
-			} else {
-			header ("Location: index.php?error=fuera");
-			}
+	// Initialize the session
+	session_start();
+	
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: register.php");
+		exit;
+	}
 	?>
 
 	<?php include 'db.php';
@@ -56,13 +59,13 @@
 											<div class="row">
 												<div class="col-md-6"><label>Tipo de categoria</label>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="0" checked>
+														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
 														<label class="form-check-label" for="0">
 															Gasto
 														</label>
 													</div>
 													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="1">
+														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
 														<label class="form-check-label" for="1">
 															Ingreso
 														</label>
@@ -85,14 +88,8 @@
 							</div>
 					</div>
 
-					<div id="clAc2" class="col-md-12 text-center">
-						<form action="search.php" method="post" class="form-group">
-							<input type="text" placeholder="Buscar..." name="search" class="form-control">
-						</form>
-					</div>
-
 					<div class="col-md-12">
-						<table class="table table-hover" id="myTable" style="font-size:0.7em; table-layout: auto; width: 100%; ">
+						<table id="myTable">
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -107,7 +104,8 @@
 										<td><?php echo $row['id'] ?></td>
 										<td><?php echo $row['Categoria'] ?> </td>
 										<td><?php echo $row['tipoCat'] ?> </td>
-										<td class="btn-group">
+										<td>
+											<div class="btn-group">
 											<a href="updCat.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 													<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -120,6 +118,7 @@
 													<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 												</svg>
 											</a>
+											</div>
 										</td>
 									</tr>
 								<?php endwhile; ?>

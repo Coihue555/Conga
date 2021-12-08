@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 	<?php
-		session_start();
-		if(isset($_SESSION['verificado'])){
-			} else {
-			header ("Location: index.php?error=fuera");
-			}
+	// Initialize the session
+	session_start();
+	
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: register.php");
+		exit;
+	}
 	?>
 
 	<?php include 'db.php';
@@ -34,7 +37,6 @@
 		</head>
 		<body>
 			<?php include 'navbar.php' ?>
-
 			<div class="container-fluid">
 				<div class="row" style="margin-top: 70px;">
 					<div class="col-md-12" >

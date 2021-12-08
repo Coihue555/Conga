@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-
+<?php
+	// Initialize the session
+	session_start();
+	
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: register.php");
+		exit;
+	}
+	?>
 <?php include 'db.php';
+include 'navbar.php';
 
 $id= (int)$_GET['id'];
 
@@ -140,8 +150,8 @@ header('location: stock.php');
 									
 								
 								</div>
-									 <input type="submit" name="send" value="Agregar Registro" class="btn btn-success">&nbsp;
-								 <a href="stock.php" class="btn btn-warning">Volver</a>
+									 <input type="submit" name="send" value="Agregar Registro" class="btn btn-primary">&nbsp;
+								 <a href="stock.php" class="btn btn-primary">Volver</a>
 							</form>
 				    	</div>
 			 	  </div>
