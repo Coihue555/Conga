@@ -1,15 +1,8 @@
 <?php
 
-// Initialize the session
-session_start();
+include 'sesion.php';
+include 'config.php';
 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: register.php");
-    exit;
-}
-
-include 'db.php';
 $id = (int)$_GET['id'];
 
 $sql = "DELETE from categorias where id = '$id'";

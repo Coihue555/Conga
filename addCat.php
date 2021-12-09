@@ -1,13 +1,11 @@
 <?php
-include 'db.php';
-session_start();
+include 'config.php';
+include 'sesion.php';
 if(isset($_POST['send'])){
 
 
 $categoria = htmlspecialchars($_POST['Categoria']);
 $tipoCat = htmlspecialchars($_POST['tipoCat']);
-
-
 
 $sql = "INSERT INTO categorias (Categoria, tipoCat) values ('$categoria','$tipoCat')";
 

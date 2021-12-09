@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<?php
-	// Initialize the session
-	session_start();
-	
-	// Check if the user is logged in, if not then redirect him to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location: register.php");
-		exit;
-	}
-	?>
-<?php include 'db.php';
-include 'navbar.php';
+<!doctype html>
+<html lang="es">
+    <?php
+    include 'sesion.php';
+    include 'config.php';
 
 $id= (int)$_GET['id'];
 
@@ -53,21 +45,22 @@ header('location: stock.php');
 
 
 ?>
-<html>
 	<head>
-		<script src="jquery.min.js"></script>
-		<script src="bootstrap.min.js"></script>
-		<link rel="stylesheet" href="bootstrap.min.css">
-		<title>Conga</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css">
+	<script src="jquery.min.js"></script>
+    <title>Conga</title>
 	</head>
 	<body>
-		<div class="container">
-
+	<?php include 'navbar.php' ?>
+		<div class="container-fluid">
 		    	<div class="row" style="margin-top: 70px;">
 			    	<div class="col-md-10 col-md-offset-1" >
 				    	<table class="table">
-
-					     	<hr><br>
 								<form method="post" >
 									<div class="form-group">
 										<div class="row">
@@ -116,36 +109,116 @@ header('location: stock.php');
 												</div>
 												<br>
 												<div class="row">
-													<div class="col-md-6 btn-group" role="group">
-														<button type="button" class="btn btn-outline-primary">Transfer</button>
-														<button type="button" class="btn btn-outline-primary">Gasto</button>
-														<button type="button" class="btn btn-outline-primary">Ingreso</button>
-													</div>
 													<div class="col-md-6">
+														<select class="form-control" id="tipoCuen" name="tipoCuen">
+															<option selected >Tipo</option>
+															<option value="2">Transfer</option>
+															<option value="0">Gasto</option>
+															<option value="1">Ingreso</option>
+														</select>
+													</div>
+
+														<!-- Mostras Gasto -->
+														<script>$(document).ready(function(){
+																$('#tipoCuen').on('change', function() {
+																if ( this.value == '0')
+																{
+																	$("#gasto").show();
+																}
+																else
+																{
+																	$("#gasto").hide();
+																}
+																});
+															});
+														</script>
+
+														<!-- Mostras ingreso -->
+														<script>$(document).ready(function(){
+																$('#tipoCuen').on('change', function() {
+																if ( this.value == '1')
+																{
+																	$("#ingreso").show();
+																}
+																else
+																{
+																	$("#ingreso").hide();
+																}
+																});
+															});
+														</script>
+
+														<!-- Mostras transfer -->
+														<script>$(document).ready(function(){
+																$('#tipoCuen').on('change', function() {
+																if ( this.value == '2')
+																{
+																	$("#transfer").show();
+																}
+																else
+																{
+																	$("#transfer").hide();
+																}
+																});
+															});
+														</script>
+
+														
+													<!-- Mostras gasto -->
+													<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
 														<?php
-																$sql = "SELECT * FROM categorias";
-																$result = $db->query($sql);
-																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='Categoria' required>";
-																	echo "<option selected value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																	// output data of each row
-																	while($row = $result->fetch_assoc()) {
-																	echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																	
-																	}
-																	echo "</select>";
-																	
-																};																
+															$sql = "SELECT * FROM categorias WHERE tipoCat=0";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='Categoria' required>";
+																echo "<option selected disabled>Categoria</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																}
+																echo "</select>";
+															} 
 														?>
 
 													</div>
+													<!-- Mostras ingreso -->
+													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
+														<?php
+															$sql = "SELECT * FROM categorias WHERE tipoCat=1";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='Categoria' required>";
+																echo "<option selected disabled>Categoria</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																}
+																echo "</select>";
+															} 
+														?>
+
+													</div>
+													<!-- Mostras transfer -->
+													<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
+														<?php
+															$sql = "SELECT * FROM cuentas";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																echo "<select class='form-control' name='cuenDest' required>";
+																echo "<option selected disabled>Cuenta</option>";
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
+																}
+																echo "</select>";
+															} 
+														?>
+
+													</div>
+
 											
 									</div>
-									
-									<p></p>
-									
-									<p></p>
-									
+																		
 									<br>
 									
 								

@@ -7,10 +7,10 @@ define('DB_PASSWORD', 'admin');
 define('DB_NAME', 'conga');
  
 /* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Check connection
-if($link === false){
+if($db === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 ?>

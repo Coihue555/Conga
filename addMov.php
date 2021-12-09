@@ -1,6 +1,6 @@
 <?php
-include 'db.php';
-session_start();
+include 'config.php';
+include 'sesion.php';
 if(isset($_POST['send'])){
 
 $fecha = htmlspecialchars($_POST['fecha']);

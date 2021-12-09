@@ -1,48 +1,32 @@
-<!DOCTYPE html>
-	<?php
-	// Initialize the session
-	session_start();
-	
-	// Check if the user is logged in, if not then redirect him to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-		header("location: register.php");
-		exit;
-	}
-	?>
+<!doctype html>
+<html lang="es">
+    <?php
+    include 'sesion.php';
+    include 'config.php';
 
-	<?php include 'db.php';
+	$tabla ="categorias";
+	include 'tabla.php';
 
-		$page = (isset($_GET['page']) ? $_GET['page'] : 1);
-		$perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 30);
-		$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
-
-
-		$sql = "select * from categorias ORDER BY id DESC limit ".$start." , ".$perPage." ";
-		$total = $db->query("select * from categorias")->num_rows;
-		$pages = ceil($total / $perPage);
-
-		$rows = $db->query($sql);
-
-
-	?>
-	<html>
-		<head>
-			<script src="jquery.min.js"></script>
-			<script src="bootstrap.min.js"></script>
-			<link rel="stylesheet" href="bootstrap.min.css">
-			<link rel="stylesheet" href="estilo.css">
-			<link rel="icon" href="favicon.ico">
-			<title> Categorias </title>
-		</head>
-		<body>
-		<?php include 'navbar.php' ?>
-			<div class="container">
+    ?>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Conga</title>
+  </head>
+  <body>
+  <?php include 'navbar.php' ?>
+			<div class="container-fluid">
 				<div class="row" style="margin-top: 70px;">
-					<div class="col-md-12 col-md-offset-1" >
+					<div class="col-md-12" >
 						<table class="table">
-								
-							<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-primary pull-right">Nuevo</button>
-							<button type="button" class="btn btn-default pull-right" onclick="print()">Imprimir</button>
+							<div style="float:right;">
+								<button type="button" class="btn btn-default pull-right" onclick="print()">Imprimir</button>
+								<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-primary pull-right">Nuevo</button>
+							</div>
 							<hr><br>
 						 <!-- Modal -->
 							<div id="myModal" class="modal fade" role="dialog">
@@ -92,7 +76,6 @@
 						<table id="myTable">
 							<thead>
 								<tr>
-									<th>ID</th>
 									<th onclick="sortTable(1)">Categoria</th>
 									<th onclick="sortTable(2)">Tipo</th>
 									<th id="clAc">Acciones</th>
@@ -100,8 +83,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<?php while($row = $rows->fetch_assoc()): ?>						
-										<td><?php echo $row['id'] ?></td>
+									<?php while($row = $rows->fetch_assoc()): ?>
 										<td><?php echo $row['Categoria'] ?> </td>
 										<td><?php echo $row['tipoCat'] ?> </td>
 										<td>
@@ -124,78 +106,6 @@
 								<?php endwhile; ?>
 							</tbody>
 						</table>
-
-						<script>
-							function sortTable(n) {
-							var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-							table = document.getElementById("myTable");
-							switching = true;
-							//Set the sorting direction to ascending:
-							dir = "asc"; 
-							/*Make a loop that will continue until
-							no switching has been done:*/
-							while (switching) {
-								//start by saying: no switching is done:
-								switching = false;
-								rows = table.rows;
-								/*Loop through all table rows (except the
-								first, which contains table headers):*/
-								for (i = 1; i < (rows.length - 1); i++) {
-								//start by saying there should be no switching:
-								shouldSwitch = false;
-								/*Get the two elements you want to compare,
-								one from current row and one from the next:*/
-								x = rows[i].getElementsByTagName("TD")[n];
-								y = rows[i + 1].getElementsByTagName("TD")[n];
-								/*check if the two rows should switch place,
-								based on the direction, asc or desc:*/
-								if (dir == "asc") {
-									if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-									//if so, mark as a switch and break the loop:
-									shouldSwitch= true;
-									break;
-									}
-								} else if (dir == "desc") {
-									if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-									//if so, mark as a switch and break the loop:
-									shouldSwitch = true;
-									break;
-									}
-								}
-								}
-								if (shouldSwitch) {
-								/*If a switch has been marked, make the switch
-								and mark that a switch has been done:*/
-								rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-								switching = true;
-								//Each time a switch is done, increase this count by 1:
-								switchcount ++;      
-								} else {
-								/*If no switching has been done AND the direction is "asc",
-								set the direction to "desc" and run the while loop again.*/
-								if (switchcount == 0 && dir == "asc") {
-									dir = "desc";
-									switching = true;
-								}
-								}
-							}
-							}
-							</script>
-
-
-
-
-					</div>
-				</div>
-				<div class="row justify-content-md-center">
-					<ul class="pagination">
-						<?php for($i = 1 ; $i <= $pages; $i++): ?>
-							<li><a href="?page=<?php echo $i;?>&per-page=<?php echo $perPage;?>"><?php echo $i; ?></a></li>
-						<?php endfor; ?>
-					</ul>
-				</div>	
-			</div>
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<link rel="stylesheet" media="print" href="print.css">
-		</body>
-	</html>
+                        <?php
+                        include 'footer.php';
+                        ?>
