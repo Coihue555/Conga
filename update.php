@@ -110,8 +110,14 @@ header('location: stock.php');
 												<br>
 												<div class="row">
 													<div class="col-md-6">
+													<?php $sql = "SELECT C.tipoCat FROM categorias C INNER JOIN movimientos M ON C.Categoria = M.Categoria AND M.id ='$id'";
+														$rows = $db->query($sql);
+
+														$row= $rows->fetch_assoc();
+													?>
+
 														<select class="form-control" id="tipoCuen" name="tipoCuen">
-															<option selected >Tipo</option>
+															<option selected value="<?php echo $row['tipoCat'];?>"><?php echo $row['tipoCat'];?></option>
 															<option value="2">Transfer</option>
 															<option value="0">Gasto</option>
 															<option value="1">Ingreso</option>
@@ -167,7 +173,7 @@ header('location: stock.php');
 													<!-- Mostras gasto -->
 													<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
 														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat=0";
+															$sql = "SELECT * FROM categorias WHERE tipoCat='Gasto'";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";
@@ -184,7 +190,7 @@ header('location: stock.php');
 													<!-- Mostras ingreso -->
 													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
 														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat=1";
+															$sql = "SELECT * FROM categorias WHERE tipoCat='Ingreso'";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";

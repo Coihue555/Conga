@@ -15,15 +15,16 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="estilo.css">
+	<script src="jquery.min.js"></script>
     <title>Conga</title>
   </head>
   <body>
   <?php include 'navbar.php' ?>
   <div class="container-fluid">
-				<div class="row" style="margin-top: 70px;">
-					<div class="col-md-12" >
-						<table class="table">
-							<div class="col-md-12">
+		<div class="row" style="margin-top: 70px;">
+			<div class="col-md-12" >
+				<table class="table">
+					<div class="col-md-12">
 								<?php
 									// Saldo total
 									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE valor > 0";
@@ -50,186 +51,185 @@
 
 
 								?>
-							</div>
-                            <div style="float:right;">
-                                <button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
-                                <button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-primary">Nuevo</button>
-                            </div>	
-							
-							<hr><br>
+					</div>
+                    <div style="float:right;">
+                    	<button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
+                    </div>	
+					<hr><br>
 						 <!-- Modal -->
-							<div id="myModal" class="modal fade" role="dialog">
-								<div class="modal-dialog">
-								 <!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 class="modal-title">Agregar</h4>
-											<button type="button" class="btn btn-close" data-dismiss="modal">&times;</button>
-										</div>
-										<div class="modal-body">
-											<form method="post" action="addMov.php">
-											<div class="form-group">
-												<div class="row">
-													<div class="col-md-6">
-														<?php
-															$sql = "SELECT * FROM cuentas";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='cuenta' required>";
-																echo "<option selected disabled>Cuenta</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-													</div>
-													<div class="col-md-6">
+					<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Agregar movimiento</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="addMov.php">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-6">
+															<?php
+																$sql = "SELECT * FROM cuentas";
+																$result = $db->query($sql);
+																if ($result->num_rows > 0) {
+																	echo "<select class='form-control' name='cuenta' required>";
+																	echo "<option selected disabled>Cuenta</option>";
+																	// output data of each row
+																	while($row = $result->fetch_assoc()) {
+																	echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
+																	}
+																	echo "</select>";
+																} 
+															?>
+												</div>
+												<div class="col-md-6">
 													<select class="form-control" name="usuario" required>
-															<option selected disabled>Usuario</option>
-															<option value="Dani">Dani</option>
-															<option value="Andy">Andy</option>
-														</select>
-													</div>
+																<option selected disabled>Usuario</option>
+																<option value="Dani">Dani</option>
+																<option value="Andy">Andy</option>
+															</select>
 												</div>
-												<br>
-												<div class="row">
-													<div class="col-md-6">
-														<input type="date" required id="fecha" name="fecha">
-													</div>
-													<div class="col-md-6">
-														<input type="text" required name="valor" class="form-control" placeholder="$0.00">
-													</div>
+											</div>
+													<br>
+											<div class="row">
+												<div class="col-md-6">
+													<input type="date" required id="fecha" name="fecha">
 												</div>
-												<br>
-												<div class="row">
-													<div class="col-md-12">
-														<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
-													</div>
+												<div class="col-md-6">
+													<input type="text" required name="valor" class="form-control" placeholder="$0.00">
 												</div>
-												<br>
-												<div class="row">
-													<div class="col-md-6">
-														<select class="form-control" id="tipoCuen" name="tipoCuen">
-															<option selected disabled>Tipo</option>
-															<option value="2">Transfer</option>
-															<option value="0">Gasto</option>
-															<option value="1">Ingreso</option>
-														</select>
-													</div>
-														<!-- Mostras Gasto -->
-														<script>$(document).ready(function(){
-																$('#tipoCuen').on('change', function() {
-																if ( this.value == '0')
-																{
-																	$("#gasto").show();
-																}
-																else
-																{
-																	$("#gasto").hide();
-																}
+											</div>
+													<br>
+											<div class="row">
+												<div class="col-md-12">
+													<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
+												</div>
+											</div>
+													<br>
+											<div class="row">
+												<div class="col-md-6">
+															<select class="form-control" id="tipoCuen" name="tipoCuen">
+																<option selected disabled>Tipo</option>
+																<option value="2">Transfer</option>
+																<option value="0">Gasto</option>
+																<option value="1">Ingreso</option>
+															</select>
+												</div>
+															<!-- Mostras Gasto -->
+															<script>$(document).ready(function(){
+																	$('#tipoCuen').on('change', function() {
+																	if ( this.value == '0')
+																	{
+																		$("#gasto").show();
+																	}
+																	else
+																	{
+																		$("#gasto").hide();
+																	}
+																	});
 																});
-															});
-														</script>
+															</script>
 
+															<!-- Mostras ingreso -->
+															<script>$(document).ready(function(){
+																	$('#tipoCuen').on('change', function() {
+																	if ( this.value == '1')
+																	{
+																		$("#ingreso").show();
+																	}
+																	else
+																	{
+																		$("#ingreso").hide();
+																	}
+																	});
+																});
+															</script>
+
+															<!-- Mostras transfer -->
+															<script>$(document).ready(function(){
+																	$('#tipoCuen').on('change', function() {
+																	if ( this.value == '2')
+																	{
+																		$("#transfer").show();
+																	}
+																	else
+																	{
+																		$("#transfer").hide();
+																	}
+																	});
+																});
+															</script>
+
+															
+														<!-- Mostras gasto -->
+												<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
+															<?php
+																$sql = "SELECT * FROM categorias WHERE tipoCat='Gasto'";
+																$result = $db->query($sql);
+																if ($result->num_rows > 0) {
+																	echo "<select class='form-control' name='Categoria' required>";
+																	echo "<option selected disabled>Categoria</option>";
+																	// output data of each row
+																	while($row = $result->fetch_assoc()) {
+																	echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																	}
+																	echo "</select>";
+																} 
+															?>
+
+												</div>
 														<!-- Mostras ingreso -->
-														<script>$(document).ready(function(){
-																$('#tipoCuen').on('change', function() {
-																if ( this.value == '1')
-																{
-																	$("#ingreso").show();
-																}
-																else
-																{
-																	$("#ingreso").hide();
-																}
-																});
-															});
-														</script>
-
-														<!-- Mostras transfer -->
-														<script>$(document).ready(function(){
-																$('#tipoCuen').on('change', function() {
-																if ( this.value == '2')
-																{
-																	$("#transfer").show();
-																}
-																else
-																{
-																	$("#transfer").hide();
-																}
-																});
-															});
-														</script>
-
-														
-													<!-- Mostras gasto -->
-													<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
-														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat=0";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='Categoria' required>";
-																echo "<option selected disabled>Categoria</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-
-													</div>
-													<!-- Mostras ingreso -->
-													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
-														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat=1";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='Categoria' required>";
-																echo "<option selected disabled>Categoria</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-
-													</div>
-													<!-- Mostras transfer -->
-													<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
-														<?php
-															$sql = "SELECT * FROM cuentas";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='cuenDest' required>";
-																echo "<option selected disabled>Cuenta</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-
-													</div>
+												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
+															<?php
+																$sql = "SELECT * FROM categorias WHERE tipoCat='Ingreso'";
+																$result = $db->query($sql);
+																if ($result->num_rows > 0) {
+																	echo "<select class='form-control' name='Categoria' required>";
+																	echo "<option selected disabled>Categoria</option>";
+																	// output data of each row
+																	while($row = $result->fetch_assoc()) {
+																	echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																	}
+																	echo "</select>";
+																} 
+															?>
 
 												</div>
-												<p></p>
-												
-												
+														<!-- Mostras transfer -->
+												<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
+															<?php
+																$sql = "SELECT * FROM cuentas";
+																$result = $db->query($sql);
+																if ($result->num_rows > 0) {
+																	echo "<select class='form-control' name='cuenDest' required>";
+																	echo "<option selected disabled>Cuenta</option>";
+																	// output data of each row
+																	while($row = $result->fetch_assoc()) {
+																	echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
+																	}
+																	echo "</select>";
+																} 
+															?>
+
+												</div>
+
+											</div>
+											<hr>
+											<div style="float:right;">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" name="send" class="btn btn-primary">Agregar</button>
+											</div>
 											
-												<br>
-												<button style="float: left;" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-												<input style="float: right;" type="submit" name="send" value="Agregar" class="btn btn-success">
-											</form>
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
+						</div>
 					</div>
+					<!-- fin modal -->
+
 
 					<div class="col-md-12">
 						<table id="myTable">

@@ -24,52 +24,50 @@
 					<div class="col-md-12" >
 						<table class="table">
 							<div style="float:right;">
-								<button type="button" class="btn btn-default pull-right" onclick="print()">Imprimir</button>
-								<button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-primary pull-right">Nuevo</button>
+								<button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
 							</div>
 							<hr><br>
 						 <!-- Modal -->
-							<div id="myModal" class="modal fade" role="dialog">
+							<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
-								 <!-- Modal content-->
 									<div class="modal-content">
 										<div class="modal-header">
-											<h4 class="modal-title">Agregar</h4>
-											<button type="button" class="btn btn-close" data-dismiss="modal">&times;</button>
-										</div>
-										<div class="modal-body">
-											<form method="post" action="addCat.php">
-											<div class="form-group">
-											<div class="row">
-												<div class="col-md-6"><label>Tipo de categoria</label>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
-														<label class="form-check-label" for="0">
-															Gasto
-														</label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
-														<label class="form-check-label" for="1">
-															Ingreso
-														</label>
-													</div>
-												</div>
-											<div class="col-md-6"><label for="Categoria">Nombre de la Categoria</label>
-												<input type="text" required name="Categoria" class="form-control" placeholder="<?php echo $row['Categoria'];?>">
-											</div>
-										</div>
-												
-												
-											
-												<br>
-												<button style="float: left;" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-												<input style="float: right;" type="submit" name="send" value="Agregar" class="btn btn-success">
-											</form>
-										</div>
+											<h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
+									<div class="modal-body">
+										<form method="post" action="addCat.php">
+											<div class="form-group">
+												<div class="row">
+													<div class="col-md-6"><label>Tipo de categoria</label>
+														<div class="form-check">
+															<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
+															<label class="form-check-label" for="0">Gasto</label>
+														</div>
+														<div class="form-check">
+															<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
+															<label class="form-check-label" for="1">Ingreso</label>
+														</div>
+													</div>
+													<div class="col-md-6"><label for="Categoria">Nombre de la Categoria</label>
+														<input type="text" required name="Categoria" class="form-control" placeholder="<?php echo $row['Categoria'];?>">
+													</div>
+												</div>									
+												<br>
+												<div style="float:right;">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" name="send" class="btn btn-primary">Agregar</button>
+											</div>
+											
+										</div>
+									</form>
 								</div>
 							</div>
+						</div>
+					</div>
+							<!-- fin modal -->
+						</div>
 					</div>
 
 					<div class="col-md-12">
