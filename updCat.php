@@ -50,11 +50,11 @@ header('location: categorias.php');
 	</head>
 	<body>
 	<?php include 'navbar.php';?>
-		<div class="container-fluid">
+		<div class="container">
 		    	<div class="row" style="margin-top: 70px;">
 			    	<div class="col-md-10" >
 				    	<table class="table">
-								<form method="post" >
+								<form method="post" class="needs-validation">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-6"><label>Tipo de categoria</label>

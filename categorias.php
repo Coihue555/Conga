@@ -19,44 +19,43 @@
   </head>
   <body>
   <?php include 'navbar.php' ?>
-			<div class="container-fluid">
-				<div class="row" style="margin-top: 70px;">
-					<div class="col-md-12" >
-						<table class="table">
-							<div style="float:right;">
-								<button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
-								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
-							</div>
-							<hr><br>
+		<div class="container">
+			<div class="row" style="margin-top: 70px;">
+				<div class="col-md-12" >
+					<div style="float:right;">
+						<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
+					</div>
+						<hr><br>
 						 <!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<form method="post" action="addCat.php">
-											<div class="form-group">
-												<div class="row">
-													<div class="col-md-6"><label>Tipo de categoria</label>
-														<div class="form-check">
-															<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
-															<label class="form-check-label" for="0">Gasto</label>
-														</div>
-														<div class="form-check">
-															<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
-															<label class="form-check-label" for="1">Ingreso</label>
-														</div>
+					<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form method="post" class="needs-validation" action="addCat.php">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-6"><label>Tipo de categoria</label>
+													<div class="form-check">
+														<input class="form-check-input" type="radio" name="tipoCat" id="0" value="Gasto" checked>
+														<label class="form-check-label" for="0">Gasto</label>
 													</div>
-													<div class="col-md-6"><label for="Categoria">Nombre de la Categoria</label>
-														<input type="text" required name="Categoria" class="form-control" placeholder="<?php echo $row['Categoria'];?>">
+													<div class="form-check">
+														<input class="form-check-input" type="radio" name="tipoCat" id="1" value="Ingreso">
+														<label class="form-check-label" for="1">Ingreso</label>
 													</div>
-												</div>									
+												</div>
+												<div class="col-md-6"><label for="Categoria">Nombre de la Categoria</label>
+													<input type="text" required name="Categoria" class="form-control" placeholder="<?php echo $row['Categoria'];?>">
+												</div>
+											</div>									
 												<br>
-												<div style="float:right;">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+											<div style="float:right;">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 												<button type="submit" name="send" class="btn btn-primary">Agregar</button>
 											</div>
 											
@@ -67,13 +66,13 @@
 						</div>
 					</div>
 							<!-- fin modal -->
-						</div>
-					</div>
-
-					<div class="col-md-12">
-						<table id="myTable">
-							<thead>
-								<tr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col">
+					<table id="myTable">
+						<thead>
+							<tr>
 									<th onclick="sortTable(1)">Categoria</th>
 									<th onclick="sortTable(2)">Tipo</th>
 									<th id="clAc">Acciones</th>
@@ -104,6 +103,7 @@
 								<?php endwhile; ?>
 							</tbody>
 						</table>
+					</div>
                         <?php
                         include 'footer.php';
                         ?>

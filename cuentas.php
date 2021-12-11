@@ -20,11 +20,11 @@
   </head>
   <body>
   <?php include 'navbar.php' ?>
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row" style="margin-top: 70px;">
 					<div class="col-md-12" >
 						<div style="float:right;">
-                            <button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
+                            <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
                         </div>
 							<hr><br>
@@ -37,7 +37,7 @@
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form method="post" action="addCuen.php">
+										<form method="post" class="needs-validation" action="addCuen.php">
 											<div class="form-group">
 												<div class="row">
 													<div class="col-md-6"><label for="nomCuen">Nombre de la cuenta</label>
@@ -47,7 +47,7 @@
 											</div>
 											<br>											
 											<div style="float:right;">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 												<button type="submit" name="send" class="btn btn-primary">Agregar</button>
 											</div>
 										</form>
@@ -56,8 +56,8 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="col-md-12">
+					<div class="row justify-content-center">
+					<div class="col">
 						<table id="myTable">
 							<thead>
 								<tr>
@@ -89,6 +89,7 @@
 								<?php endwhile; ?>
 							</tbody>
 						</table>
+					</div>
                         <?php
                         include 'footer.php';
                         ?>

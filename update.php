@@ -57,11 +57,11 @@ header('location: stock.php');
 	</head>
 	<body>
 	<?php include 'navbar.php' ?>
-		<div class="container-fluid">
+		<div class="container">
 		    	<div class="row" style="margin-top: 70px;">
 			    	<div class="col-md-10 col-md-offset-1" >
 				    	<table class="table">
-								<form method="post" >
+								<form method="post" class="needs-validation">
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-6">
@@ -98,7 +98,7 @@ header('location: stock.php');
 														<input type="date" required id="fecha" class="form-control" name="fecha" value="<?php echo $row['fecha'];?>">
 													</div>
 													<div class="col-md-6">
-														<input type="text" required name="valor" class="form-control" value="<?php echo $row['valor'];?>" placeholder="<?php echo $row['valor'];?>">
+														<input type="number" required name="valor" class="form-control" value="<?php echo $row['valor'];?>" placeholder="<?php echo $row['valor'];?>">
 													</div>
 												</div>
 												<br>

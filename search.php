@@ -26,13 +26,13 @@
   </head>
   <body>
   <?php include 'navbar.php' ?>
-	<div class="container-fluid">
+	<div class="container">
 
 		<div class="row" style="margin-top: 70px;">
 			<div class="col-md-12 col-md-offset-1" >
 				<table class="table">
 				<div style="float:right;">
-                                <button type="button" class="btn btn-default" onclick="print()">Imprimir</button>
+                                <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
                             </div>
 					<hr><br>
 				<!-- Modal -->

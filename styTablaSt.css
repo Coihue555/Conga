@@ -1,0 +1,30 @@
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+    /*
+	Label the data
+	*/
+    td:nth-of-type(1):before {
+        content: "Id";
+    }
+    td:nth-of-type(2):before {
+        content: "Fecha de Ingreso";
+    }
+    td:nth-of-type(3):before {
+        content: "Valor";
+    }
+    td:nth-of-type(4):before {
+        content: "Categoria";
+    }
+    td:nth-of-type(5):before {
+        content: "Cuenta";
+    }
+    td:nth-of-type(6):before {
+        content: "Detalle";
+    }
+    td:nth-of-type(7):before {
+        content: "Usuario";
+    }
+    td:nth-of-type(8):before {
+        content: "Acciones";
+    }
+}

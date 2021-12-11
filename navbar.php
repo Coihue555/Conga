@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="stock.php">Conga</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,9 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="rstpwrd.php">Cambiar contraseña</a></li>
-              <li><a class="dropdown-item disabled" href="#">Opciones</a></li>
+              <li><a class="dropdown-item" href="https://octarinecode.com/#contact">Deja tu comentario</a></li>
+              <li><a class="dropdown-item" href="https://www.youtube.com/c/OctarineCode">Youtube</a></li>
+              <li><a class="dropdown-item" href="https://discord.gg/EPXR5QzNz3">Discord</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logout.php">Salir</a></li>
             </ul>
@@ -32,7 +34,6 @@
       </ul>
       <form class="d-flex" action="search.php" method="post" >
         <input class="form-control me-2" type="search" name="search" placeholder="Buscar" aria-label="Search">
-        <a href="logout.php" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Salir</a>
       </form>
 
     </div>
