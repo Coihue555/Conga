@@ -39,7 +39,7 @@
 					<div class="col-md-12">
 								<?php
 									// Saldo total
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE (valor >= 0 AND usuario='$user')";
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE (usuario='$user')";
 									$result = $db->query($sql);
 
 									if ($result->num_rows > 0) {
@@ -243,7 +243,6 @@
 									<th onclick="sortTable(3)">Categoria</th>
 									<th onclick="sortTable(4)">Cuenta</th>
 									<th onclick="sortTable(5)">Detalle</th>
-									<th onclick="sortTable(6)">Usuario</th>
 									<th id="clAc">Acciones</th>
 								</tr>
 							</thead>
@@ -256,7 +255,6 @@
 										<td><?php echo $row['Categoria'] ?> </td>
 										<td><?php echo $row['cuenta'] ?> </td>
 										<td><?php echo $row['detalle'] ?> </td>
-										<td><?php echo $row['usuario'] ?> </td>
 										<td >
 											<div class="btn-group">
 											<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">

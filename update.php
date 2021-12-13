@@ -11,10 +11,8 @@ $sql1 = "SELECT * from movimientos where id ='$id'";
 
 $rows = $db->query($sql1);
 
-$row= $rows->fetch_assoc();
+$rowe= $rows->fetch_assoc();
 
-$cuenta= $row['cuenta'];
-$valor = $row['valor'];
 $user=$_SESSION["username"];
 
 if(isset($_POST['send'])){
@@ -71,7 +69,7 @@ header('location: stock.php');
 													$result = $db->query($sql);
 													if ($result->num_rows > 0) {
 														echo "<select class='form-control' name='cuenta' required>";
-														echo "<option selected value='".$row['cuenta']."'>" . $row['cuenta']. "</option>";
+														echo "<option selected value='".$rowe['cuenta']."'>" . $rowe['cuenta']. "</option>";
 														// output data of each row
 														while($row = $result->fetch_assoc()) {
 															echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
@@ -100,11 +98,11 @@ header('location: stock.php');
 												<br>
 												<div class="row">
 													<div class="col-md-6">
-													<?php $sql = "SELECT C.tipoCat FROM categorias C INNER JOIN movimientos M ON C.Categoria = M.Categoria AND M.id ='$id'";
-														$rows = $db->query($sql);
+														<?php $sql = "SELECT C.tipoCat FROM categorias C INNER JOIN movimientos M ON C.Categoria = M.Categoria AND M.id ='$id'";
+															$rows = $db->query($sql);
 
-														$row= $rows->fetch_assoc();
-													?>
+															$row= $rows->fetch_assoc();
+														?>
 
 														<select class="form-control" id="tipoCuen" name="tipoCuen">
 															<option selected value="<?php echo $row['tipoCat'];?>"><?php echo $row['tipoCat'];?></option>
@@ -167,7 +165,7 @@ header('location: stock.php');
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";
-																echo "<option selected disabled>Categoria</option>";
+																echo "<option selected value=".$rowe['Categoria'].">".$rowe['Categoria']."</option>";
 																// output data of each row
 																while($row = $result->fetch_assoc()) {
 																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
@@ -184,7 +182,7 @@ header('location: stock.php');
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";
-																echo "<option selected disabled>Categoria</option>";
+																echo "<option selected value=".$rowe['Categoria'].">".$rowe['Categoria']."</option>";
 																// output data of each row
 																while($row = $result->fetch_assoc()) {
 																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
@@ -197,11 +195,11 @@ header('location: stock.php');
 													<!-- Mostras transfer -->
 													<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
 														<?php
-															$sql = "SELECT * FROM cuentas";
+															$sql = "SELECT * FROM cuentas Where usuario='$user'";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='cuenDest' required>";
-																echo "<option selected disabled>Cuenta</option>";
+																echo "<option selected disabled>Elije Cuenta</option>";
 																// output data of each row
 																while($row = $result->fetch_assoc()) {
 																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
