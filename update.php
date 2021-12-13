@@ -15,6 +15,7 @@ $row= $rows->fetch_assoc();
 
 $cuenta= $row['cuenta'];
 $valor = $row['valor'];
+$user=$_SESSION["username"];
 
 if(isset($_POST['send'])){
 
@@ -66,7 +67,7 @@ header('location: stock.php');
 										<div class="row">
 											<div class="col-md-6">
 												<?php
-													$sql = "SELECT * FROM cuentas";
+													$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 													$result = $db->query($sql);
 													if ($result->num_rows > 0) {
 														echo "<select class='form-control' name='cuenta' required>";
@@ -81,15 +82,10 @@ header('location: stock.php');
 											</div>
 											<div class="col-md-6">
 												<?php $sql = "select * from movimientos where id='$id'";
-												$rows = $db->query($sql);
-
-												$row= $rows->fetch_assoc();
+													$rows = $db->query($sql);
+													$row= $rows->fetch_assoc();
 												?>
-												<select class="form-control" name="usuario" required>
-													<option selected disabled value="<?php echo $row['usuario'];?>"><?php echo $row['usuario'];?></option>
-													<option value="Dani">Dani</option>
-													<option value="Andy">Andy</option>
-												</select>
+												<input type="text" required name="detalle" class="form-control" value="<?php echo $row['detalle'];?>">
 											</div>
 										</div>
 												<br>
@@ -99,12 +95,6 @@ header('location: stock.php');
 													</div>
 													<div class="col-md-6">
 														<input type="number" required name="valor" class="form-control" value="<?php echo $row['valor'];?>" placeholder="<?php echo $row['valor'];?>">
-													</div>
-												</div>
-												<br>
-												<div class="row">
-													<div class="col-md-12">
-														<input type="text" required name="detalle" class="form-control" value="<?php echo $row['detalle'];?>">
 													</div>
 												</div>
 												<br>
@@ -173,7 +163,7 @@ header('location: stock.php');
 													<!-- Mostras gasto -->
 													<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
 														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat='Gasto'";
+															$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";
@@ -190,7 +180,7 @@ header('location: stock.php');
 													<!-- Mostras ingreso -->
 													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
 														<?php
-															$sql = "SELECT * FROM categorias WHERE tipoCat='Ingreso'";
+															$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
 															$result = $db->query($sql);
 															if ($result->num_rows > 0) {
 																echo "<select class='form-control' name='Categoria' required>";

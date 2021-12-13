@@ -15,14 +15,14 @@ $valor = $row['valor'];
 $tipoCue = $row['tipoCuen'];
 
 if ($tipoCue===0) {
-    $sql2 = "UPDATE cuentas SET totalParcial=(totalParcial - '$valor') WHERE nomCuen='$cuenta'";
+    $sql2 = "UPDATE cuentas SET totalParcial=(totalParcial - '$valor') WHERE (nomCuen='$cuenta' and usuario='$user')";
 } else {
-    $sql2 = "UPDATE cuentas SET totalParcial=(totalParcial + '$valor') WHERE nomCuen='$cuenta'";
+    $sql2 = "UPDATE cuentas SET totalParcial=(totalParcial + '$valor') WHERE (nomCuen='$cuenta' and usuario='$user')";
 }
 
 
 
-$sql2 = "UPDATE cuentas SET totalParcial=(totalParcial + '$valor') WHERE nomCuen='$cuenta'";
+$sql2 = "UPDATE cuentas SET totalParcial=(totalParcial + '$valor') WHERE (nomCuen='$cuenta' and usuario='$user')";
 
 $val = $db->query($sql2);
 

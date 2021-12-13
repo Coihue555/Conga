@@ -5,6 +5,7 @@
     include 'config.php';
 
 	$tabla ="movimientos";
+	$user=$_SESSION["username"];
 	include 'tabla.php';
 
     ?>
@@ -38,24 +39,24 @@
 					<div class="col-md-12">
 								<?php
 									// Saldo total
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE valor > 0";
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE (valor >= 0 AND usuario='$user')";
 									$result = $db->query($sql);
 
 									if ($result->num_rows > 0) {
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-success'>Total<br> <span class='badge bg-secondary'>$" . $row['valor_suma']."</span></button>			";
+											echo "<button type='button' class='btn btn-success'>Total<br> <span class='badge bg-secondary'>$" . $row['valor_suma']."</span></button>		";
 										}
 									}
 
 									//Resto de las cuentas
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) 'Parcial', cuenta 'Cuenta' FROM movimientos GROUP BY cuenta";
+									$sql = "SELECT TRUNCATE(SUM(valor), 2) 'Parcial', cuenta 'Cuenta' FROM movimientos WHERE usuario='$user' GROUP BY cuenta";
 									$result = $db->query($sql);
 
 									if ($result->num_rows > 0) {
 										// output data of each row
 										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-primary'>" . $row['Cuenta']."<br> <span class='badge bg-secondary'>$" . $row['Parcial']."</span></button>			";
+											echo "<button type='button' class='btn btn-primary'>" . $row['Cuenta']."<br> <span class='badge bg-secondary'>$" . $row['Parcial']."</span></button>		";
 										}
 									}
 
@@ -82,7 +83,7 @@
 											<div class="row">
 												<div class="col-md-6">
 															<?php
-																$sql = "SELECT * FROM cuentas";
+																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
 																	echo "<select class='form-control' name='cuenta' required>";
@@ -96,19 +97,7 @@
 															?>
 												</div>
 												<div class="col-md-6">
-													<?php
-																$sql = "SELECT * FROM usuarios";
-																$result = $db->query($sql);
-																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='usuario' required>";
-																	echo "<option selected disabled>Usuario</option>";
-																	// output data of each row
-																	while($row = $result->fetch_assoc()) {
-																	echo "<option value='" . $row['username'] . "'>" . $row['username'] . "</option>";
-																	}
-																	echo "</select>";
-																} 
-													?>
+													<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
 												</div>
 											</div>
 													<br>
@@ -118,12 +107,6 @@
 												</div>
 												<div class="col-md-6">
 													<input type="number" required name="valor" class="form-control" placeholder="$0.00">
-												</div>
-											</div>
-													<br>
-											<div class="row">
-												<div class="col-md-12">
-													<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
 												</div>
 											</div>
 													<br>
@@ -185,7 +168,7 @@
 														<!-- Mostras gasto -->
 												<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
 															<?php
-																$sql = "SELECT * FROM categorias WHERE tipoCat='Gasto'";
+																$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
 																	echo "<select class='form-control' name='Categoria' required>";
@@ -202,7 +185,7 @@
 														<!-- Mostras ingreso -->
 												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
 															<?php
-																$sql = "SELECT * FROM categorias WHERE tipoCat='Ingreso'";
+																$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
 																	echo "<select class='form-control' name='Categoria' required>";
@@ -219,7 +202,7 @@
 														<!-- Mostras transfer -->
 												<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
 															<?php
-																$sql = "SELECT * FROM cuentas";
+																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
 																	echo "<select class='form-control' name='cuenDest' required>";

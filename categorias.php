@@ -5,6 +5,7 @@
     include 'config.php';
 
 	$tabla ="categorias";
+	$user=$_SESSION["username"];
 	include 'tabla.php';
 
     ?>

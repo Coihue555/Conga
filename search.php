@@ -4,12 +4,13 @@
     include 'sesion.php';
     include 'config.php';
 	$tabla ="movimientos";
+	$user=$_SESSION["username"];
 	include 'tabla.php';
 
 	if(isset($_POST['search'])){
 
 			$sch = htmlspecialchars($_POST['search']);
-			$sql = "SELECT * FROM movimientos WHERE detalle LIKE '%$sch%' OR Categoria LIKE '%$sch%' OR cuenta LIKE '%$sch%' ORDER BY id DESC";
+			$sql = "SELECT * FROM movimientos WHERE (detalle LIKE '%$sch%' OR Categoria LIKE '%$sch%' OR cuenta LIKE '%$sch%' AND usuario='$user') ORDER BY id DESC";
 			$rows = $db->query($sql);
 
 	}
