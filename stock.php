@@ -81,7 +81,7 @@
 									<form class="needs-validation" method="post" action="addMov.php">
 										<div class="form-group">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6"><label for="cuenta">Cuenta</label>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
@@ -96,33 +96,33 @@
 																} 
 															?>
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6"><label for="Detalle">Detalle</label>
 													<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
 												</div>
 											</div>
-													<br>
+											<br>
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6"><label for="fecha">Fecha</label>
 													<input type="date" required id="fecha" name="fecha">
 												</div>
-												<div class="col-md-6">
+												<div class="col-md-6"><label for="valor">Valor</label>
 													<input type="number" required name="valor" class="form-control" placeholder="$0.00">
 												</div>
 											</div>
 													<br>
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-6"><label for="tipoCuen">Tipo de categoria</label>
 															<select class="form-control" id="tipoCuen" name="tipoCuen">
 																<option selected disabled>Tipo</option>
-																<option value="2">Transfer</option>
-																<option value="0">Gasto</option>
-																<option value="1">Ingreso</option>
+																<option value="Transfer">Transfer</option>
+																<option value="Gasto">Gasto</option>
+																<option value="Ingreso">Ingreso</option>
 															</select>
 												</div>
 															<!-- Mostras Gasto -->
 															<script>$(document).ready(function(){
 																	$('#tipoCuen').on('change', function() {
-																	if ( this.value == '0')
+																	if ( this.value == 'Gasto')
 																	{
 																		$("#gasto").show();
 																	}
@@ -137,7 +137,7 @@
 															<!-- Mostras ingreso -->
 															<script>$(document).ready(function(){
 																	$('#tipoCuen').on('change', function() {
-																	if ( this.value == '1')
+																	if ( this.value == 'Ingreso')
 																	{
 																		$("#ingreso").show();
 																	}
@@ -152,7 +152,7 @@
 															<!-- Mostras transfer -->
 															<script>$(document).ready(function(){
 																	$('#tipoCuen').on('change', function() {
-																	if ( this.value == '2')
+																	if ( this.value == 'Transfer')
 																	{
 																		$("#transfer").show();
 																	}
@@ -166,7 +166,7 @@
 
 															
 														<!-- Mostras gasto -->
-												<div class="col-md-6" style='display:none;' name="gasto" id="gasto">
+												<div class="col-md-6" style='display:none;' name="gasto" id="gasto"><label for="Categoria">Tipo de gasto</label>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
 																$result = $db->query($sql);
@@ -183,7 +183,7 @@
 
 												</div>
 														<!-- Mostras ingreso -->
-												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso">
+												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso"><label for="Categoria">Tipo de ingreso</label>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
 																$result = $db->query($sql);
@@ -200,7 +200,7 @@
 
 												</div>
 														<!-- Mostras transfer -->
-												<div class="col-md-6" style='display:none;' name="transfer" id="transfer">
+												<div class="col-md-6" style='display:none;' name="transfer" id="transfer"><label for="cuenDest">Cuenta Destino</label>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);

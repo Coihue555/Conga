@@ -7,15 +7,11 @@ $fecha = htmlspecialchars($_POST['fecha']);
 $categoria = htmlspecialchars($_POST['Categoria']);
 $detalle = htmlspecialchars($_POST['detalle']);
 $cuenta = htmlspecialchars($_POST['cuenta']);
-
-		if (isset($_POST['usuario'])){
-			$usuario = htmlspecialchars($_POST['usuario']);
-		}else{
-			$usuario = htmlspecialchars($_SESSION['username']);
-		}
+$usuario = htmlspecialchars($_SESSION['username']);
 
 
-if ($_POST['tipoCuen']==='2') {
+
+if ($_POST['tipoCuen']==='Transfer') {
 	$valor = htmlspecialchars($_POST['valor']);
 	$dest = htmlspecialchars($_POST['cuenDest']);
 	//debito
@@ -28,9 +24,9 @@ if ($_POST['tipoCuen']==='2') {
 
 } else {
 
-	if ($_POST['tipoCuen']==='0') {
+	if ($_POST['tipoCuen']==='Gasto') {
 		$valor = htmlspecialchars(-$_POST['valor']);
-	} elseif ($_POST['tipoCuen']==='1'){
+	} elseif ($_POST['tipoCuen']==='Ingreso'){
 		$valor = htmlspecialchars($_POST['valor']);
 	} 
 		
