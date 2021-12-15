@@ -24,11 +24,12 @@
 			<div class="container">
 				<div class="row" style="margin-top: 70px;">
 					<div class="col-md-12" >
-						<div style="float:right;">
+					<hr>
+						<div style="float:right; margin-bottom:5px;">
                             <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
                         </div>
-							<hr><br>
+						<br>
 						 <!-- Modal -->
 						<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
