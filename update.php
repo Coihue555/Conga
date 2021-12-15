@@ -19,13 +19,15 @@ if(isset($_POST['send'])){
 
 
 	$fecha = htmlspecialchars($_POST['fecha']);
-	$valor = htmlspecialchars($_POST['valor']);
+	
 	//colocar if para el tipoCuen
 	if ($_POST['tipoCuen'] == 'Ingreso') {
 		$categoria = htmlspecialchars($_POST['Categoriai']);
+		$valor = htmlspecialchars($_POST['valor']);
 		}
 	if ($_POST['tipoCuen'] == 'Gasto') {
 		$categoria = htmlspecialchars($_POST['Categoriag']);
+		$valor = htmlspecialchars(-$_POST['valor']);
 		}
 	$detalle = htmlspecialchars($_POST['detalle']);
 	$cuenta = htmlspecialchars($_POST['cuenta']);
@@ -113,7 +115,6 @@ header('location: stock.php');
 
 														<select class="form-control" id="tipoCuen" name="tipoCuen">
 															<option selected value="<?php echo $row['tipoCat'];?>"><?php echo $row['tipoCat'];?></option>
-															<option value="Transfer">Transfer</option>
 															<option value="Gasto">Gasto</option>
 															<option value="Ingreso">Ingreso</option>
 														</select>
@@ -151,27 +152,6 @@ header('location: stock.php');
 														?>
 
 													</div>
-
-
-													
-													<!-- Mostras transfer -->
-													<div class="col-md-6" style='display:none;' name="transfer" id="transfer"><label for="cuenta">Cuenta</label>
-														<?php
-															$sql = "SELECT * FROM cuentas Where usuario='$user'";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='cuenDest' required>";
-																echo "<option selected disabled>Elije Cuenta</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-
-													</div>
-
 											
 									</div>
 																		

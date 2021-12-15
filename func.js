@@ -32,22 +32,4 @@ $(document).ready(function() {
         $("#ingreso").hide();
     }
 
-
-
-
-    $('#tipoCuen').on('change', function() {
-        if (this.value == 'Transfer') {
-            $("#transfer").show();
-        } else {
-            $("#transfer").hide();
-        }
-    });
-
-    if ($('#tipoCuen').val() == 'Transfer') {
-        $("#transfer").show();
-    } else {
-        $("#transfer").hide();
-    }
-
-
 });
