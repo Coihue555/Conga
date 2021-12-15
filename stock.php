@@ -33,42 +33,58 @@
   <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-		<div class="row" style="margin-top: 70px;">
+		<div class="row">
 			<div class="col-md-12" >
 				<table class="table">
 					<div class="col-md-12">
-								<?php
-									// Saldo total
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE (usuario='$user')";
-									$result = $db->query($sql);
+						<div class="accordion" id="accordionExample">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										Saldo de cuentas
+									</button>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+									<div class="accordion-body">
+										<?php
+											// Saldo total
+											$sql = "SELECT TRUNCATE(SUM(valor), 2) AS valor_suma FROM movimientos WHERE (usuario='$user')";
+											$result = $db->query($sql);
 
-									if ($result->num_rows > 0) {
-										// output data of each row
-										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-success'>Total<br> <span class='badge bg-secondary'>$" . $row['valor_suma']."</span></button>		";
-										}
-									}
+											if ($result->num_rows > 0) {
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													echo "<button type='button' class='btn btn-success' style='margin-bottom:5px;'>Total<br> <span class='badge bg-secondary'>$" . $row['valor_suma']."</span></button>		";
+												}
+											}
 
-									//Resto de las cuentas
-									$sql = "SELECT TRUNCATE(SUM(valor), 2) 'Parcial', cuenta 'Cuenta' FROM movimientos WHERE usuario='$user' GROUP BY cuenta";
-									$result = $db->query($sql);
+											//Resto de las cuentas
+											$sql = "SELECT TRUNCATE(SUM(valor), 2) 'Parcial', cuenta 'Cuenta' FROM movimientos WHERE usuario='$user' GROUP BY cuenta";
+											$result = $db->query($sql);
 
-									if ($result->num_rows > 0) {
-										// output data of each row
-										while($row = $result->fetch_assoc()) {
-											echo "<button type='button' class='btn btn-primary'>" . $row['Cuenta']."<br> <span class='badge bg-secondary'>$" . $row['Parcial']."</span></button>		";
-										}
-									}
+											if ($result->num_rows > 0) {
+												// output data of each row
+												while($row = $result->fetch_assoc()) {
+													echo "<button type='button' class='btn btn-primary' style='margin-bottom:5px;'>" . $row['Cuenta']."<br> <span class='badge bg-secondary'>$" . $row['Parcial']."</span></button>		";
+												}
+											}
 
 
 
-								?>
+										?>
+								</div>
+								</div>
+							</div>
+						</div>
+								
 					</div>
+					<hr>
                     <div style="float:right;">
                     	<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
-                    </div>	
-					<hr><br>
+                    </div>
+					<br>	
+					
 						 <!-- Modal -->
 					<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
