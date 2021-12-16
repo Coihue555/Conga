@@ -5,6 +5,7 @@
     include 'config.php';
 
 	$tabla ="movimientos";
+	$orderBY="fecha";
 	$user=$_SESSION["username"];
 	include 'tabla.php';
 
@@ -291,6 +292,14 @@
 								<?php endwhile; ?>
 							</tbody>
 						</table>
+						<?php
+						if ($total<1) {
+							echo "<div class='text-center'>";
+							echo "<h2>No hay nada por aqui :P</h2>";
+							echo "<h5>Proba agregando los Saldos Iniciales de tus cuentas con el boton <span class='text-primary'>NUEVO</span> </h5>";
+							echo "</div>";
+						}
+						?>
                         <?php
                         include 'footer.php';
                         ?>

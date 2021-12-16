@@ -4,9 +4,10 @@
     include 'sesion.php';
     include 'config.php';
 	$tabla ="movimientos";
+	$orderBY="id";
 	$user=$_SESSION["username"];
 	include 'tabla.php';
-
+	
 	if(isset($_POST['search'])){
 
 			$sch = htmlspecialchars($_POST['search']);
@@ -35,6 +36,7 @@
 				<table class="table"><hr>
 				<div style="float:right;">
                                 <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
+								<a href="stock.php" class="btn btn-primary">Volver</a>
                             </div>
 					<br>
 				<!-- Modal -->
@@ -59,6 +61,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+								
 							</div>
 						</div>
 					</div>
@@ -66,7 +69,6 @@
 		
 					<?php if(mysqli_num_rows($rows) < 1 ): ?>
 						<h3 class="text-danger text-center">Ninguna coincidencia</h3>
-						<a href="stock.php" class="btn btn-primary" style="float:right">Volver</a>
 					<?php else: ?>
 				<div class="col-md-12">
 				<table id="myTable">

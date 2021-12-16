@@ -4,7 +4,7 @@
     $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
 
-    $sql = "select * from ".$tabla." WHERE usuario='".$user."' ORDER BY id DESC limit ".$start." , ".$perPage." ";
+    $sql = "select * from ".$tabla." WHERE usuario='".$user."' ORDER BY ".$orderBY." DESC limit ".$start." , ".$perPage." ";
     $total = $db->query("select * from ".$tabla." WHERE usuario='".$user."'")->num_rows;
     $pages = ceil($total / $perPage);
 

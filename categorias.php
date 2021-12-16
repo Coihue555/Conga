@@ -5,6 +5,7 @@
     include 'config.php';
 
 	$tabla ="categorias";
+	$orderBY="id";
 	$user=$_SESSION["username"];
 	include 'tabla.php';
 
