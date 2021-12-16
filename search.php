@@ -31,11 +31,12 @@
 
 		<div class="row" style="margin-top: 70px;">
 			<div class="col-md-12 col-md-offset-1" >
-				<table class="table">
+				<h2 class="text-center">Resultados</h2>
+				<table class="table"><hr>
 				<div style="float:right;">
                                 <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
                             </div>
-					<hr><br>
+					<br>
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
 					<div class="modal-dialog">
@@ -64,33 +65,29 @@
 				</div>
 		
 					<?php if(mysqli_num_rows($rows) < 1 ): ?>
-						<h2 class="text-danger text-center">Ninguna coincidencia</h2>
-						<a href="stock.php" class="btn btn-warning">Volver</a>
+						<h3 class="text-danger text-center">Ninguna coincidencia</h3>
+						<a href="stock.php" class="btn btn-primary" style="float:right">Volver</a>
 					<?php else: ?>
 				<div class="col-md-12">
 				<table id="myTable">
 					<thead>
 						<tr>
-							<th>ID</th>
 							<th onclick="sortTable(1)">Fecha de ingr</th>
 							<th onclick="sortTable(2)">Valor</th>
 							<th onclick="sortTable(3)">Categoria</th>
 							<th onclick="sortTable(4)">Cuenta</th>
 							<th onclick="sortTable(5)">Detalle</th>
-							<th onclick="sortTable(6)">Usuario</th>
 							<th id="clAc">Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-						<?php while($row = $rows->fetch_assoc()): ?>						
-							<td><?php echo $row['id'] ?></td>
+						<?php while($row = $rows->fetch_assoc()): ?>	
 							<td><?php echo $row['fecha'] ?></td>
 							<td>$<?php echo $row['valor'] ?> </td>
 							<td><?php echo $row['Categoria'] ?> </td>
 							<td><?php echo $row['cuenta'] ?> </td>
 							<td><?php echo $row['detalle'] ?> </td>
-							<td><?php echo $row['usuario'] ?> </td>
 							<td>
 								<div class="btn-group">
 								<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">

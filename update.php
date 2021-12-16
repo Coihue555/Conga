@@ -101,7 +101,7 @@ header('location: stock.php');
 														<input type="date" required id="fecha" class="form-control" name="fecha" value="<?php echo $row['fecha'];?>">
 													</div>
 													<div class="col-md-6"><label for="valor">Valor</label>
-														<input type="number" required name="valor" class="form-control" value="<?php echo $row['valor'];?>" placeholder="<?php echo $row['valor'];?>">
+														<input type="number" required name="valor" class="form-control" value="<?php echo abs($row['valor']);?>" placeholder="<?php echo $row['valor'];?>">
 													</div>
 												</div>
 												<br>

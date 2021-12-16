@@ -22,9 +22,6 @@
         content: "Detalle";
     }
     td:nth-of-type(7):before {
-        content: "Usuario";
-    }
-    td:nth-of-type(8):before {
         content: "Acciones";
     }
 }

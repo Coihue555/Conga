@@ -1,10 +1,14 @@
 @media print {
-    .sidebar,
     #clAc,
     #clAc2,
+    .accordion,
     .btn-success,
     .btn-default,
     .btn-danger {
         display: none;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
     }
 }

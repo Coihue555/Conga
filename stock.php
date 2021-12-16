@@ -79,7 +79,7 @@
 								
 					</div>
 					<hr>
-                    <div style="float:right;">
+                    <div id="clAc2" style="float:right;">
                     	<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
                     </div>
@@ -98,21 +98,21 @@
 										<div class="form-group">
 											<div class="row">
 												<div class="col-md-6"><label for="cuenta">Cuenta</label>
+													<select class='form-control' name='cuenta' required>
+														<option selected disabled>Cuenta</option>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='cuenta' required>";
-																	echo "<option selected disabled>Cuenta</option>";
 																	// output data of each row
 																	while($row = $result->fetch_assoc()) {
 																	echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
 																	}
-																	echo "</select>";
 																} 
 															?>
+													</select>
 												</div>
-												<div class="col-md-6"><label for="Detalle">Detalle</label>
+												<div class="col-md-6"><label for="detalle">Detalle</label>
 													<input type="text" required name="detalle" class="form-control" placeholder="Detalle">
 												</div>
 											</div>
