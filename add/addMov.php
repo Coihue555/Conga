@@ -36,13 +36,6 @@ if ($_POST['tipoCuen']==='Transfer') {
 }
 
 
-
-
-
-
-
-
-
 //printf("Errormessage: %s\n", $db->error);
 //die();
 

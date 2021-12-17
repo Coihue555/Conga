@@ -1,33 +1,33 @@
 <?php
-// Include config file
+// Incluir la conexion a la BD
 require_once "config.php";
  
-// Define variables and initialize with empty values
+// Definicion de variables e inicializacion con valores vacios
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
-// Processing form data when form is submitted
+// Procesamiento de los datos cuando son enviados
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate username
+    // Validacion del username
     if(empty(trim($_POST["username"]))){
         $username_err = "Por favor, ingrese un nombre de usuario.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "El nombre de usuario debe tener solo letras, numeros y guiones bajos.";
     } else{
-        // Prepare a select statement
+        // Preparacion de la consulta SELECT
         $sql = "SELECT id FROM usuarios WHERE username = ?";
         
         if($stmt = mysqli_prepare($db, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Union de variables a la consulta preparada como parametros
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
+            // Asignar parametros
             $param_username = trim($_POST["username"]);
             
-            // Attempt to execute the prepared statement
+            // Ejecucion del la consulta preparada
             if(mysqli_stmt_execute($stmt)){
-                /* store result */
+                /* guarda los resultados */
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
@@ -39,13 +39,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Algo salio mal. Intente nuevamente mas tarde.";
             }
 
-            // Close statement
+            // Cierra la consulta
             mysqli_stmt_close($stmt);
             include 'createDBTable.php';
         }
     }
     
-    // Validate password
+    // Validar Password
     if(empty(trim($_POST["password"]))){
         $password_err = "Por favor, ingrese un password.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
     
-    // Validate confirm password
+    // Validar Confirmar password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Por favor, confirme el password.";     
     } else{
@@ -64,34 +64,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    // Check input errors before inserting in database
+    // Revisar errores de entrada antes de insertar en la BD
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
-        // Prepare an insert statement
+        // Preparar la consulta INSERT
         $sql = "INSERT INTO usuarios (username, password) VALUES (?, ?)";
          
         if($stmt = mysqli_prepare($db, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Union de variables a la consulta preparada como parametros
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
-            // Set parameters
+            // Asignar parametros
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Crear el hash del password
             
-            // Attempt to execute the prepared statement
+            // Ejecucion del la consulta preparada
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
+                // Redireccion a la pagina de Inicio de Sesion
                 header("location: index.php");
             } else{
                 echo "Oops! Algo salio mal. Intente nuevamente mas tarde.";
             }
 
-            // Close statement
+            // Cerrar consulta
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Close connection
+    // Cerrar conexion
     mysqli_close($db);
 }
 ?>
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container">
         <div class="row" style="margin-top: 70px;">
             <div class="col-md-6">
-                <img class="rounded float-right" src="logo.png" alt="">
+                <img class="rounded mx-auto d-block" src="logo.png" alt="">
             </div>
             <div class="col-md-6">
                 <h2>Registrate</h2>
