@@ -824,7 +824,7 @@ Una vez logueado será redirigido a la vista principal del sistema, el listado d
    </td>
   </tr>
   <tr>
-   <td>Al iniciar sesión por primera vez, esta vista principal aparece sin nada de contenido. El mismo refleja los movimientos ingresados por el usuario sean estos ingresos, gastos o transferencia de una cuenta a otra, así que un mensaje invita al usuario a cargar sus primeros movimientos, los saldos iniciales de cada cuenta por ejemplo, para rellenar la tabla de movimientos. La carga de movimientos de detalla en el punto [8.5.4](### 8.5.4 Carga De Movimientos)
+   <td>Al iniciar sesión por primera vez, esta vista principal aparece sin nada de contenido. El mismo refleja los movimientos ingresados por el usuario sean estos ingresos, gastos o transferencia de una cuenta a otra, así que un mensaje invita al usuario a cargar sus primeros movimientos, los saldos iniciales de cada cuenta por ejemplo, para rellenar la tabla de movimientos. La carga de movimientos de detalla en el punto 8.5.4
    </td>
   </tr>
 </table>
@@ -834,9 +834,6 @@ Una vez logueado será redirigido a la vista principal del sistema, el listado d
 <table>
   <tr>
    <td>
-
-<p id="gdcalert18" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image17.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert19">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 <img src="images/image17.png" width="" alt="alt_text" title="image_tooltip">
 
@@ -852,17 +849,9 @@ Una vez logueado será redirigido a la vista principal del sistema, el listado d
 
 <li>link para regresar a la pantalla principal desde cualquier otra sección de la web,
 
-<li>link a la pantalla Cuentas, 
+<li>link a la pantalla Cuentas, Ver 8.5.5
 
-<p id="gdcalert19" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "Ver 8.5.5"). Did you generate a TOC? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert20">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-<a href="#heading=h.nf5i617q92d">Ver 8.5.5</a>
-
-<li>link a la pantalla Categorias, 
-
-<p id="gdcalert20" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "Ver 8.5.6"). Did you generate a TOC? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert21">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-<a href="#heading=h.2ghdjbjfja5q">Ver 8.5.6</a>
+<li>link a la pantalla Categorias, Ver 8.5.6
 
 <li>campo de búsqueda que permite listar todas las coincidencias con el término que ingresemos entre todos los movimientos
 </li>
@@ -876,9 +865,6 @@ Una vez logueado será redirigido a la vista principal del sistema, el listado d
 <table>
   <tr>
    <td>
-
-<p id="gdcalert21" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image18.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert22">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 <img src="images/image18.png" width="" alt="alt_text" title="image_tooltip">
 
@@ -901,9 +887,6 @@ También irán apareciendo los totales parciales de cada cuenta en la sección S
   <tr>
    <td>
 
-<p id="gdcalert22" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image19.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert23">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image19.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
@@ -925,9 +908,6 @@ En caso de ser una transferencia, el siguiente campo no será categoría, sino n
   <tr>
    <td>
 
-<p id="gdcalert23" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image20.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert24">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image20.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
@@ -947,9 +927,6 @@ En caso de ser una transferencia, el siguiente campo no será categoría, sino n
   <tr>
    <td>
 
-<p id="gdcalert24" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image21.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert25">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image21.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
@@ -965,9 +942,6 @@ En caso de ser una transferencia, el siguiente campo no será categoría, sino n
 <table>
   <tr>
    <td>
-
-<p id="gdcalert25" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image22.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert26">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 <img src="images/image22.png" width="" alt="alt_text" title="image_tooltip">
 
@@ -988,19 +962,12 @@ En caso de ser una transferencia, el siguiente campo no será categoría, sino n
   <tr>
    <td>
 
-<p id="gdcalert26" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image23.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert27">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image23.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
    <td>En la Barra de navegación podemos encontrar un menú desplegable que le muestra unas opciones al usuario.
 <p>
-La primera opción es la de cambiar la contraseña, la cual se muestra en la 
-
-<p id="gdcalert27" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "sección 8.5.8"). Did you generate a TOC? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert28">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-<a href="#heading=h.c966mb8faf7l">sección 8.5.8</a>.
+La primera opción es la de cambiar la contraseña, la cual se muestra en la sección 8.5.8
 <p>
 La segunda opción es la de dejar un comentario en la página del desarrollador.
 <p>
@@ -1018,17 +985,10 @@ La tercera opción es cerrar la sesión.
   <tr>
    <td>
 
-<p id="gdcalert28" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image24.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert29">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image24.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
-   <td>En esta opción el usuario puede cambiar su contraseña. Una vez realizado será redirigido a la página de Login mostrada en la 
-
-<p id="gdcalert29" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "sección 8.5.2"). Did you generate a TOC? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert30">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-<a href="#heading=h.epp9864uv7pz">sección 8.5.2</a>
+   <td>En esta opción el usuario puede cambiar su contraseña. Una vez realizado será redirigido a la página de Login mostrada en la sección 8.5.2
    </td>
   </tr>
 </table>
