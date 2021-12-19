@@ -18,7 +18,7 @@
               <li><a class="dropdown-item" target="_blank" href="https://octarinecode.com/#contact">Deja tu comentario</a></li>
               <li><a class="dropdown-item" target="_blank" href="https://www.youtube.com/c/OctarineCode">Youtube</a></li>
               <li><a class="dropdown-item" target="_blank" href="https://discord.gg/EPXR5QzNz3">Discord</a></li>
-              <li><a class="dropdown-item" target="_blank" href="https://github.com/Coihue555/Conga">Github</a></li>
+              <li><a class="dropdown-item" target="_blank" href="https://github.com/Coihue555/Conga">Codigo Fuente - Github</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logout.php">Salir</a></li>
             </ul>
