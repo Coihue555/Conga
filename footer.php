@@ -62,7 +62,7 @@
 
 					</div>
 				</div>
-                <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation" id="clAc2">
                     <ul class="pagination justify-content-md-center">
                     <?php for($i = 1 ; $i <= $pages; $i++): ?>
                         <li class="page-item"><a class="page-link" href="?page=<?php echo $i;?>&per-page=<?php echo $perPage;?>"><?php echo $i; ?></a></li>

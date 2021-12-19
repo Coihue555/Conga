@@ -100,7 +100,7 @@
 											<div class="row">
 												<div class="col-md-6"><label for="cuenta">Cuenta</label>
 													<select class='form-control' name='cuenta' required>
-														<option selected disabled>Cuenta</option>
+														<option selected disabled value="">Cuenta</option>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
@@ -123,14 +123,14 @@
 													<input type="date" required id="fecha" name="fecha">
 												</div>
 												<div class="col-md-6"><label for="valor">Valor</label>
-													<input type="number" required name="valor" class="form-control" placeholder="$0.00">
+													<input type="number" required name="valor" class="form-control" min="0" placeholder="0.00" value="" step=".01">
 												</div>
 											</div>
 													<br>
 											<div class="row">
 												<div class="col-md-6"><label for="tipoCuen">Tipo de categoria</label>
-															<select class="form-control" id="tipoCuen" name="tipoCuen">
-																<option selected disabled>Tipo</option>
+															<select class="form-control" id="tipoCuen" name="tipoCuen" required>
+																<option selected disabled value="">Tipo</option>
 																<option value="Transfer">Transfer</option>
 																<option value="Gasto">Gasto</option>
 																<option value="Ingreso">Ingreso</option>
@@ -184,54 +184,51 @@
 															
 														<!-- Mostras gasto -->
 												<div class="col-md-6" style='display:none;' name="gasto" id="gasto"><label for="Categoria">Tipo de gasto</label>
+													<select class='form-control' name='Categoria'>
+														<option selected disabled value="">Categoria</option>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='Categoria' required>";
-																	echo "<option selected disabled>Categoria</option>";
 																	// output data of each row
 																	while($row = $result->fetch_assoc()) {
 																	echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
 																	}
-																	echo "</select>";
 																} 
 															?>
-
+													</select>
 												</div>
 														<!-- Mostras ingreso -->
 												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso"><label for="Categoria">Tipo de ingreso</label>
+													<select class='form-control' name='Categoria'>
+														<option selected disabled value="">Categoria</option>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='Categoria' required>";
-																	echo "<option selected disabled>Categoria</option>";
 																	// output data of each row
 																	while($row = $result->fetch_assoc()) {
 																	echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
 																	}
-																	echo "</select>";
 																} 
 															?>
-
+													</select>
 												</div>
 														<!-- Mostras transfer -->
 												<div class="col-md-6" style='display:none;' name="transfer" id="transfer"><label for="cuenDest">Cuenta Destino</label>
+													<select class='form-control' name='cuenDest'>
+														<option selected disabled>Cuenta</option>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
 																if ($result->num_rows > 0) {
-																	echo "<select class='form-control' name='cuenDest' required>";
-																	echo "<option selected disabled>Cuenta</option>";
 																	// output data of each row
 																	while($row = $result->fetch_assoc()) {
 																	echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
 																	}
-																	echo "</select>";
 																} 
 															?>
-
+													</select>
 												</div>
 
 											</div>
@@ -254,7 +251,7 @@
 						<table id="myTable">
 							<thead>
 								<tr>
-									<th onclick="sortTable(0)">ID</th>
+									<th id="clAc2" onclick="sortTable(0)">ID</th>
 									<th onclick="sortTable(1)">Fecha de ingr</th>
 									<th onclick="sortTable(2)">Valor</th>
 									<th onclick="sortTable(3)">Categoria</th>
@@ -266,13 +263,13 @@
 							<tbody>
 								<tr>
 								<?php while($row = $rows->fetch_assoc()): ?>						
-										<td><?php echo $row['id'] ?></td>
+										<td id="clAc2"><?php echo $row['id'] ?></td>
 										<td><?php echo $row['fecha'] ?></td>
 										<td>$<?php echo $row['valor'] ?> </td>
 										<td><?php echo $row['Categoria'] ?> </td>
 										<td><?php echo $row['cuenta'] ?> </td>
 										<td><?php echo $row['detalle'] ?> </td>
-										<td >
+										<td id="clAc2">
 											<div class="btn-group">
 											<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -294,9 +291,9 @@
 						</table>
 						<?php
 						if ($total<1) {
-							echo "<div class='text-center'>";
+							echo "<div class='text-center' id='clAc2'>";
 							echo "<h2>No hay nada por aqui :P</h2>";
-							echo "<h5>Proba agregando los Saldos Iniciales de tus cuentas con el boton <span class='text-primary'>NUEVO</span> </h5>";
+							echo "<h5>Proba agregando los Saldos Iniciales de tus cuentas con el boton <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#myModal'>Nuevo</button></h5>";
 							echo "</div>";
 						}
 						?>

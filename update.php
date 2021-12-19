@@ -22,11 +22,11 @@ if(isset($_POST['send'])){
 	
 	//colocar if para el tipoCuen
 	if ($_POST['tipoCuen'] == 'Ingreso') {
-		$categoria = htmlspecialchars($_POST['Categoriai']);
+		$categoria = htmlspecialchars($_POST['catIngreso']);
 		$valor = htmlspecialchars($_POST['valor']);
 		}
 	if ($_POST['tipoCuen'] == 'Gasto') {
-		$categoria = htmlspecialchars($_POST['Categoriag']);
+		$categoria = htmlspecialchars($_POST['catGasto']);
 		$valor = htmlspecialchars(-$_POST['valor']);
 		}
 	$detalle = htmlspecialchars($_POST['detalle']);
@@ -73,19 +73,19 @@ header('location: stock.php');
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-6"><label for="cuenta">Cuenta</label>
-												<?php
-													$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
-													$result = $db->query($sql);
-													if ($result->num_rows > 0) {
-														echo "<select class='form-control' name='cuenta' required>";
-														echo "<option selected value='".$rowe['cuenta']."'>" . $rowe['cuenta']. "</option>";
-														// output data of each row
-														while($row = $result->fetch_assoc()) {
-															echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
-															}
-														echo "</select>";
-													} 
-												?>
+												<select class='form-control' name='cuenta' required>
+													<option selected value="<?php echo $rowe['cuenta']?>"> <?php echo $rowe['cuenta']?></option>
+														<?php
+															$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
+															$result = $db->query($sql);
+															if ($result->num_rows > 0) {
+																// output data of each row
+																while($row = $result->fetch_assoc()) {
+																	echo "<option value='" . $row['nomCuen'] . "'>" . $row['nomCuen'] . "</option>";
+																	}
+															} 
+														?>
+												</select>
 											</div>
 											<div class="col-md-6"><label for="detalle">Detalle</label>
 												<?php $sql = "select * from movimientos where id='$id'";
@@ -109,10 +109,8 @@ header('location: stock.php');
 													<div class="col-md-6"><label for="tipoCuen">Tipo de categoria</label>
 														<?php $sql = "SELECT C.tipoCat FROM categorias C INNER JOIN movimientos M ON C.Categoria = M.Categoria AND M.id ='$id'";
 															$rows = $db->query($sql);
-
 															$row= $rows->fetch_assoc();
 														?>
-
 														<select class="form-control" id="tipoCuen" name="tipoCuen">
 															<option selected value="<?php echo $row['tipoCat'];?>"><?php echo $row['tipoCat'];?></option>
 															<option value="Gasto">Gasto</option>
@@ -121,36 +119,35 @@ header('location: stock.php');
 													</div>
 													<!-- Mostras ingreso -->
 													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso"><label for="Categoria">Categoria</label>
-														<?php
-															$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='Categoriai' required>";
-																echo "<option selected value='".$rowe['Categoria']."'>".$rowe['Categoria']."</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
+														<select class='form-control' name='catIngreso'>
+															<option selected value="<?php echo $rowe['Categoria']?>"><?php $rowe['Categoria'] ?></option>
+																<?php
+																	$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
+																	$result = $db->query($sql);
+																	if ($result->num_rows > 0) {
+																		// output data of each row
+																		while($row = $result->fetch_assoc()) {
+																		echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																		}
+																	} 
+																?>
+														</select>
 													</div>
 													<!-- Mostras gasto -->
 													<div class="col-md-6" style='display:none;' name="gasto" id="gasto"><label for="Categoria">Categoria</label>
-														<?php
-															$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
-															$result = $db->query($sql);
-															if ($result->num_rows > 0) {
-																echo "<select class='form-control' name='Categoriag' required>";
-																echo "<option selected value='".$rowe['Categoria']."'>".$rowe['Categoria']."</option>";
-																// output data of each row
-																while($row = $result->fetch_assoc()) {
-																echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
-																}
-																echo "</select>";
-															} 
-														?>
-
+														<select class='form-control' name='catGasto'>
+															<option selected value="<?php $rowe['Categoria'] ?>"><?php $rowe['Categoria'] ?></option>
+																<?php
+																	$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
+																	$result = $db->query($sql);
+																	if ($result->num_rows > 0) {
+																		// output data of each row
+																		while($row = $result->fetch_assoc()) {
+																		echo "<option value='" . $row['Categoria'] . "'>" . $row['Categoria'] . "</option>";
+																		}
+																	} 
+																?>
+														</select>
 													</div>
 											
 									</div>

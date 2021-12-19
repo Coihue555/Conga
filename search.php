@@ -34,7 +34,7 @@
 			<div class="col-md-12 col-md-offset-1" >
 				<h2 class="text-center">Resultados</h2>
 				<table class="table"><hr>
-				<div style="float:right;">
+				<div style="float:right;" id="clAc2">
                                 <button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 								<a href="stock.php" class="btn btn-primary">Volver</a>
                             </div>
@@ -64,7 +64,7 @@
 							<td><?php echo $row['Categoria'] ?> </td>
 							<td><?php echo $row['cuenta'] ?> </td>
 							<td><?php echo $row['detalle'] ?> </td>
-							<td>
+							<td id="clAc2">
 								<div class="btn-group">
 								<a href="update.php?id=<?php echo $row['id'];?>" class="btn-sm btn-primary">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
