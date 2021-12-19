@@ -1,6 +1,3 @@
-# conga
-Control de gastos domesticos
-
 <!-----
 Conversion notes:
 
@@ -37,43 +34,7 @@ undefined internal link to this URL: "#heading=h.epp9864uv7pz".link text: secci�
 ----->
 
 
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-<a href="#gdcalert2">alert2</a>
-<a href="#gdcalert3">alert3</a>
-<a href="#gdcalert4">alert4</a>
-<a href="#gdcalert5">alert5</a>
-<a href="#gdcalert6">alert6</a>
-<a href="#gdcalert7">alert7</a>
-<a href="#gdcalert8">alert8</a>
-<a href="#gdcalert9">alert9</a>
-<a href="#gdcalert10">alert10</a>
-<a href="#gdcalert11">alert11</a>
-<a href="#gdcalert12">alert12</a>
-<a href="#gdcalert13">alert13</a>
-<a href="#gdcalert14">alert14</a>
-<a href="#gdcalert15">alert15</a>
-<a href="#gdcalert16">alert16</a>
-<a href="#gdcalert17">alert17</a>
-<a href="#gdcalert18">alert18</a>
-<a href="#gdcalert19">alert19</a>
-<a href="#gdcalert20">alert20</a>
-<a href="#gdcalert21">alert21</a>
-<a href="#gdcalert22">alert22</a>
-<a href="#gdcalert23">alert23</a>
-<a href="#gdcalert24">alert24</a>
-<a href="#gdcalert25">alert25</a>
-<a href="#gdcalert26">alert26</a>
-<a href="#gdcalert27">alert27</a>
-<a href="#gdcalert28">alert28</a>
-<a href="#gdcalert29">alert29</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
-
 # 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image1.png "image_tooltip")
@@ -405,9 +366,6 @@ Es un lenguaje de marcado. Se utiliza para ordenar y estructurar el contenido de
    </td>
    <td>
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image2.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
@@ -679,11 +637,6 @@ En este caso la arquitectura del proyecto es un modelo cliente-servidor, donde l
 
 A continuación, un esquema del modelo cliente-servidor:
 
-
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image3.png "image_tooltip")
 
 
@@ -720,16 +673,10 @@ A continuación se muestran dos capturas de pantalla del sistema, la primera es 
   <tr>
    <td>
 
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image4.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
    <td>
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 <img src="images/image5.png" width="" alt="alt_text" title="image_tooltip">
 
@@ -752,40 +699,20 @@ Se cargaron algunas entradas por default a las tablas ‘cuentas’ y ‘categor
 
 Tabla ‘categorias’
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image6.png "image_tooltip")
 
 
 Tabla ‘cuentas’
-
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 ![alt_text](images/image7.png "image_tooltip")
 
 
 Tabla ‘usuarios’
 
-
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image8.png "image_tooltip")
 
 
 Tabla ‘movimientos’
-
-
-
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 ![alt_text](images/image9.png "image_tooltip")
 
@@ -795,13 +722,7 @@ Tabla ‘movimientos’
 
 
 
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image10.png "image_tooltip")
-
-
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image11.png "image_tooltip")
@@ -812,11 +733,6 @@ Tabla ‘movimientos’
 
 Aquí en la línea 4 se dejan los datos de conexión a la base de datos en el hosting y debajo los datos de conexión para las pruebas en la computadora offline donde se desarrolla el sistema. Adicionalmente se utiliza la interfaz gráfica PhpMyAdmin para hacer tareas de mantenimiento o de visualización sencilla de las tablas de datos.
 
-
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image12.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image12.png "image_tooltip")
 
 
@@ -824,11 +740,6 @@ Aquí en la línea 4 se dejan los datos de conexión a la base de datos en el ho
 ## 8.3.3 Comunicación con el hosting
 
 Dados los datos de conexión por parte del hosting (usuario, contraseña, dominio ftp y puerto), se utiliza el programa FileZilla para navegar el sistema de archivos local y el del servidor. Este programa sube los archivos de desarrollo que le señala el programador y los compara, preguntando en caso de ser el mismo nombre de archivo, como se procederá: se puede sobrescribir el archivo de destino o mantenerlo.
-
-
-
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image13.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 ![alt_text](images/image13.png "image_tooltip")
 
@@ -866,9 +777,6 @@ diferentes escenarios:
   <tr>
    <td>
 
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image14.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image14.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
@@ -889,9 +797,6 @@ Del mismo modo, una vez registrado un nuevo usuario mediante esta pantalla, el u
 <table>
   <tr>
    <td>
-
-<p id="gdcalert15" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image15.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert16">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 
 <img src="images/image15.png" width="" alt="alt_text" title="image_tooltip">
 
@@ -914,19 +819,12 @@ Una vez logueado será redirigido a la vista principal del sistema, el listado d
   <tr>
    <td>
 
-<p id="gdcalert16" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image16.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert17">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 <img src="images/image16.png" width="" alt="alt_text" title="image_tooltip">
 
    </td>
   </tr>
   <tr>
-   <td>Al iniciar sesión por primera vez, esta vista principal aparece sin nada de contenido. El mismo refleja los movimientos ingresados por el usuario sean estos ingresos, gastos o transferencia de una cuenta a otra, así que un mensaje invita al usuario a cargar sus primeros movimientos, los saldos iniciales de cada cuenta por ejemplo, para rellenar la tabla de movimientos. La carga de movimientos de detalla en el punto 
-
-<p id="gdcalert17" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "8.5.4"). Did you generate a TOC? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert18">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-<a href="#heading=h.dv6no1wi2ckh">8.5.4</a>
+   <td>Al iniciar sesión por primera vez, esta vista principal aparece sin nada de contenido. El mismo refleja los movimientos ingresados por el usuario sean estos ingresos, gastos o transferencia de una cuenta a otra, así que un mensaje invita al usuario a cargar sus primeros movimientos, los saldos iniciales de cada cuenta por ejemplo, para rellenar la tabla de movimientos. La carga de movimientos de detalla en el punto [8.5.4](### 8.5.4 Carga De Movimientos)
    </td>
   </tr>
 </table>
