@@ -74,7 +74,7 @@ header('location: stock.php');
 										<div class="row">
 											<div class="col-md-6"><label for="cuenta">Cuenta</label>
 												<select class='form-control' name='cuenta' required>
-													<option selected value="<?php echo $rowe['cuenta']?>"> <?php echo $rowe['cuenta']?></option>
+													<option selected value="<?php echo $rowe['cuenta']?>"><?php echo $rowe['cuenta']?></option>
 														<?php
 															$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 															$result = $db->query($sql);
@@ -111,7 +111,7 @@ header('location: stock.php');
 															$rows = $db->query($sql);
 															$row= $rows->fetch_assoc();
 														?>
-														<select class="form-control" id="tipoCuen" name="tipoCuen">
+														<select class="form-control" id="tipoCuen" name="tipoCuen" required>
 															<option selected value="<?php echo $row['tipoCat'];?>"><?php echo $row['tipoCat'];?></option>
 															<option value="Gasto">Gasto</option>
 															<option value="Ingreso">Ingreso</option>
@@ -119,8 +119,8 @@ header('location: stock.php');
 													</div>
 													<!-- Mostras ingreso -->
 													<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso"><label for="Categoria">Categoria</label>
-														<select class='form-control' name='catIngreso'>
-															<option selected value="<?php echo $rowe['Categoria']?>"><?php $rowe['Categoria'] ?></option>
+														<select class='form-control' name='catIngreso' id="catIngreso">
+															<option selected value="<?php echo $rowe['Categoria']?>"><?php echo $rowe['Categoria'] ?></option>
 																<?php
 																	$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
 																	$result = $db->query($sql);
@@ -135,8 +135,8 @@ header('location: stock.php');
 													</div>
 													<!-- Mostras gasto -->
 													<div class="col-md-6" style='display:none;' name="gasto" id="gasto"><label for="Categoria">Categoria</label>
-														<select class='form-control' name='catGasto'>
-															<option selected value="<?php $rowe['Categoria'] ?>"><?php $rowe['Categoria'] ?></option>
+														<select class='form-control' name='catGasto' id="catGasto">
+															<option selected value="<?php echo $rowe['Categoria'] ?>"><?php echo $rowe['Categoria'] ?></option>
 																<?php
 																	$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
 																	$result = $db->query($sql);

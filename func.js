@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     if ($('#tipoCuen').val() == 'Gasto') {
         $("#gasto").show();
+        document.getElementById("catGasto").required = true;
     } else {
         $("#gasto").hide();
     }
@@ -28,6 +29,7 @@ $(document).ready(function() {
 
     if ($('#tipoCuen').val() == 'Ingreso') {
         $("#ingreso").show();
+        document.getElementById("catIngreso").required = true;
     } else {
         $("#ingreso").hide();
     }

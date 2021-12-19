@@ -142,6 +142,7 @@
 																	if ( this.value == 'Gasto')
 																	{
 																		$("#gasto").show();
+																		document.getElementById("catGasto").required = true;
 																	}
 																	else
 																	{
@@ -157,6 +158,7 @@
 																	if ( this.value == 'Ingreso')
 																	{
 																		$("#ingreso").show();
+																		document.getElementById("catIngreso").required = true;
 																	}
 																	else
 																	{
@@ -172,6 +174,7 @@
 																	if ( this.value == 'Transfer')
 																	{
 																		$("#transfer").show();
+																		document.getElementById("catTransfer").required = true;
 																	}
 																	else
 																	{
@@ -184,7 +187,7 @@
 															
 														<!-- Mostras gasto -->
 												<div class="col-md-6" style='display:none;' name="gasto" id="gasto"><label for="Categoria">Tipo de gasto</label>
-													<select class='form-control' name='Categoria'>
+													<select class='form-control' name='Categoria' id="catGasto">
 														<option selected disabled value="">Categoria</option>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Gasto' and usuario='$user')";
@@ -200,7 +203,7 @@
 												</div>
 														<!-- Mostras ingreso -->
 												<div class="col-md-6" style='display:none;' name="ingreso" id="ingreso"><label for="Categoria">Tipo de ingreso</label>
-													<select class='form-control' name='Categoria'>
+													<select class='form-control' name='Categoria' id="catIngreso">
 														<option selected disabled value="">Categoria</option>
 															<?php
 																$sql = "SELECT * FROM categorias WHERE (tipoCat='Ingreso' and usuario='$user')";
@@ -216,8 +219,8 @@
 												</div>
 														<!-- Mostras transfer -->
 												<div class="col-md-6" style='display:none;' name="transfer" id="transfer"><label for="cuenDest">Cuenta Destino</label>
-													<select class='form-control' name='cuenDest'>
-														<option selected disabled>Cuenta</option>
+													<select class='form-control' name='cuenDest' id="catTransfer">
+														<option selected disabled value="">Cuenta</option>
 															<?php
 																$sql = "SELECT * FROM cuentas WHERE usuario='$user'";
 																$result = $db->query($sql);
