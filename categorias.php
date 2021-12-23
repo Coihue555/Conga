@@ -16,7 +16,6 @@
     <link rel="icon" href="assets/favicon.ico">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo.css">
     <title>Conga - Categorias</title>
   </head>
   <body>
@@ -72,8 +71,8 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col">
-					<table id="myTable">
+				<div class="col-6">
+					<table class="table" id="myTable">
 						<thead>
 							<tr>
 									<th onclick="sortTable(1)">Categoria</th>

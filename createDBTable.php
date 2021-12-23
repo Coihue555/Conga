@@ -1,6 +1,6 @@
 <?php
-//$link = mysqli_connect('localhost', 'u977804429_andy', 'Pajaromadera!555', 'u977804429_code');
-$link = mysqli_connect("localhost", "admin", "admin", "conga");
+$link = mysqli_connect('localhost', 'u977804429_andy', 'Pajaromadera!555', 'u977804429_code');
+//$link = mysqli_connect("localhost", "admin", "admin", "conga");
  
 // Check connection
 if($link === false){
