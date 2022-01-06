@@ -80,6 +80,10 @@
 								
 					</div>
 					<hr>
+					<div style="float:left;">
+							<a href="search.php?filtro=Gasto"><button type="button" class="btn btn-primary" >Gastos</button></a>
+							<a href="search.php?filtro=Ingreso"><button type="button" class="btn btn-primary" >Ingresos</button></a>
+					</div>
                     <div id="clAc2" style="float:right;">
                     	<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>

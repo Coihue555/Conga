@@ -15,6 +15,26 @@
 			$rows = $db->query($sql);
 
 	}
+
+
+	if(isset($_GET['filtro']) && ($_GET['filtro']=='Gasto')){
+
+		$sql = "SELECT * from movimientos Where valor<=0 And usuario='$user'";
+		$rows = $db->query($sql);
+
+}
+
+
+if(isset($_GET['filtro'])&($_GET['filtro']=='Ingreso')){
+
+		
+	$sql = "SELECT * from movimientos Where valor>0 And usuario='$user'";
+	$rows = $db->query($sql);
+
+}
+
+
+
 	?>
 
 <head>
