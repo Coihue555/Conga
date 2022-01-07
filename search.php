@@ -33,6 +33,29 @@ if(isset($_GET['filtro'])&($_GET['filtro']=='Ingreso')){
 
 }
 
+if(isset($_GET['filtro'])&($_GET['filtro']=='showLast7Days')){
+
+	$sieteDiasAtras= date('Y-m-d', strtotime('-7 days'));
+	$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
+	$rows = $db->query($sql);
+
+}
+
+if(isset($_GET['filtro'])&($_GET['filtro']=='showLast30Days')){
+
+	$sieteDiasAtras= date('Y-m-d', strtotime('-30 days'));
+	$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
+	$rows = $db->query($sql);
+
+}
+
+if(isset($_GET['filtro'])&($_GET['filtro']=='los5MasCaros')){
+
+	$sql = "SELECT * FROM movimientos WHERE usuario='$user' ORDER BY valor asc LIMIT 5";
+	$rows = $db->query($sql);
+
+}
+
 
 
 	?>
