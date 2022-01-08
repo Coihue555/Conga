@@ -5,9 +5,11 @@
     include 'config.php';
 
 $id= (int)$_GET['id'];
+$tabla = $_GET['tabla'];
+$user=$_SESSION["username"];
 
 
-$sql1 = "SELECT * from cuentas where id ='$id'";
+$sql1 = "SELECT * from $tabla where id ='$id' AND usuario='$user'";
 
 $rows = $db->query($sql1);
 
@@ -20,7 +22,7 @@ if(isset($_POST['send'])){
 
 
 
-$sql2 = "UPDATE cuentas set nomCuen='$cuenta' WHERE id ='$id'";
+$sql2 = "UPDATE $tabla set nomCuen='$cuenta' WHERE id ='$id' AND usuario='$user'";
 
 $val = $db->query($sql2);
 

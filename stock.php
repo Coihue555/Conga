@@ -80,18 +80,25 @@
 								
 					</div>
 					<hr>
-					<div style="float:left;">
-							<a href="search.php?filtro=Gasto"><button type="button" class="btn btn-primary" >Gastos</button></a>
-							<a href="search.php?filtro=Ingreso"><button type="button" class="btn btn-primary" >Ingresos</button></a>
-							<a href="search.php?filtro=showLast7Days"><button type="button" class="btn btn-primary" >Ult 7 dias</button></a>
-							<a href="search.php?filtro=showLast30Days"><button type="button" class="btn btn-primary" >Ult 30 dias</button></a>
-							<a href="search.php?filtro=los5MasCaros"><button type="button" class="btn btn-primary" >Los 5 + caros</button></a>
+					<div class="row">
+						<div class="col">
+						<div id="clAc2" style="float:left;">
+								<a href="search.php?filtro=Gasto"><button type="button" class="btn btn-primary" >Gastos</button></a>
+								<a href="search.php?filtro=Ingreso"><button type="button" class="btn btn-primary" >Ingresos</button></a>
+								<a href="search.php?filtro=showLast7Days"><button type="button" class="btn btn-primary" >Ult 7 dias</button></a>
+								<a href="search.php?filtro=showLast30Days"><button type="button" class="btn btn-primary" >Ult 30 dias</button></a>
+								<a href="search.php?filtro=los5MasCaros"><button type="button" class="btn btn-primary" >Los 5 + caros</button></a>
+						</div>
+						</div>
+						<div class="col">
+						<div id="clAc2" style="float:right;">
+							<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
+						</div>
+						</div>
 					</div>
-                    <div id="clAc2" style="float:right;">
-                    	<button type="button" class="btn btn-primary" onclick="print()">Imprimir</button>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Nuevo</button>
-                    </div>
 					<br>	
+					<hr>
 					
 						 <!-- Modal -->
 					<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
