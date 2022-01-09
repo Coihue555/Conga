@@ -1,6 +1,6 @@
 <?php
-include 'config.php';
-include 'sesion.php';
+include 'sesion/config.php';
+include 'sesion/sesion.php';
 if(isset($_POST['send'])){
 
 

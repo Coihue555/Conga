@@ -1,6 +1,6 @@
 <?php
-include 'sesion.php';
-require_once "config.php";
+include 'sesion/sesion.php';
+require_once "sesion/config.php";
  
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";

@@ -1,7 +1,7 @@
 <?php
-include 'sesion.php';
+include 'sesion/sesion.php';
 
-include 'config.php';
+include 'sesion/config.php';
 $id = (int)$_GET['id'];
 
 $sql1 = "SELECT * from movimientos where id ='$id'";

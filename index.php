@@ -9,7 +9,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 }
  
 // Incluir los datos de conexion a la BD
-require_once "config.php";
+require_once "sesion/config.php";
  
 // Definicion de variables e inicializacion con valores vacios
 $username = $password = "";
@@ -106,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="icon" href="assets/favicon.ico">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<script src="jquery.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
     <title>Conga</title>
 </head>
 <body>
@@ -141,7 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Entrar">
                     </div>
-                    <p>No tenes una cuenta? <a href="register.php">Registrate aca</a>.</p>
+                    <p>No tenes una cuenta? <a href="sesion/register.php">Registrate aca</a>.</p>
                 </form>
             </div>
         </div>

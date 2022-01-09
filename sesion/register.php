@@ -1,6 +1,6 @@
 <?php
 // Incluir la conexion a la BD
-require_once "config.php";
+require_once "sesion/config.php";
  
 // Definicion de variables e inicializacion con valores vacios
 $username = $password = $confirm_password = "";
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Cierra la consulta
             mysqli_stmt_close($stmt);
-            include 'createDBTable.php';
+            include 'sesion/createDBTable.php';
         }
     }
     

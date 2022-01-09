@@ -1,13 +1,3 @@
-//ajax gasto
-$.ajax({
-    url: "script.php",
-    type: "POST",
-    data: "id=1",
-    success: function(msg) {
-        alert(msg);
-    }
-})
-
 // Mostras Gasto -->
 $(document).ready(function() {
 

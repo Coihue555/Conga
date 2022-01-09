@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="es">
     <?php
-    include 'sesion.php';
-    include 'config.php';
+    include 'sesion/sesion.php';
+    include 'sesion/config.php';
 
 $id= (int)$_GET['id'];
 
@@ -18,11 +18,6 @@ if(isset($_POST['send'])){
 
 	$categoria = htmlspecialchars($_POST['Categoria']);
 	$tipoCat = htmlspecialchars($_POST['tipoCat']);
-
-
-
-
-
 
 
 $sql2 = "UPDATE categorias set Categoria='$categoria', tipoCat='$tipoCat' WHERE id ='$id'";
@@ -45,7 +40,7 @@ header('location: categorias.php');
     <link rel="icon" href="assets/favicon.ico">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="assets/css/estilo.css">
     <title>Conga</title>
 	</head>
 	<body>

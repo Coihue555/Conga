@@ -382,7 +382,7 @@ Un archivo con reglas de estilo se llama adentro del archivo html como en el sig
 
 
 ```
-<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="assets/css/estilo.css">
 ```
 
 
