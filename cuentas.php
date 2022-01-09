@@ -7,7 +7,7 @@
 	$tabla ="cuentas";
 	$orderBY="id";
 	$user=$_SESSION["username"];
-	include 'tabla.php';
+	include 'components/tabla.php';
 
     ?>
 	<head>
@@ -20,7 +20,7 @@
     <title>Conga - Cuentas</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+  <?php include 'components/navbar.php' ?>
 			<div class="container">
 				<div class="row" style="margin-top: 70px;">
 					<div class="col-md-12" >
@@ -93,5 +93,5 @@
 						</table>
 					</div>
                         <?php
-                        include 'footer.php';
+                        include 'components/footer.php';
                         ?>

@@ -7,7 +7,7 @@
 	$tabla ="movimientos";
 	$orderBY="fecha";
 	$user=$_SESSION["username"];
-	include 'tabla.php';
+	include 'components/tabla.php';
 
     ?>
   <head>
@@ -32,7 +32,7 @@
     <title>Conga</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+  <?php include 'components/navbar.php' ?>
   <div class="container">
 		<div class="row">
 			<div class="col-md-12" >
@@ -315,5 +315,5 @@
 						}
 						?>
                         <?php
-                        include 'footer.php';
+                        include 'components/footer.php';
                         ?>

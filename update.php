@@ -64,7 +64,7 @@ header('location: stock.php');
     <title>Conga</title>
 	</head>
 	<body>
-	<?php include 'navbar.php' ?>
+	<?php include 'components/navbar.php' ?>
 		<div class="container">
 		    	<div class="row" style="margin-top: 70px;">
 			    	<div class="col-md-10 col-md-offset-1" >

@@ -6,55 +6,51 @@
 	$tabla ="movimientos";
 	$orderBY="id";
 	$user=$_SESSION["username"];
-	include 'tabla.php';
+	include 'components/tabla.php';
+	include 'assets/functions.php';
 	
+
+	//match entre categoria, cuenta, o detalle
 	if(isset($_POST['search'])){
-
-			$sch = htmlspecialchars($_POST['search']);
-			$sql = "SELECT * FROM movimientos WHERE ((detalle LIKE '%$sch%' OR Categoria LIKE '%$sch%' OR cuenta LIKE '%$sch%') AND usuario='$user') ORDER BY id DESC";
-			$rows = $db->query($sql);
-
+		$rows = busquedaSencilla($_POST['search']);
 	}
 
-
+	//gastos
 	if(isset($_GET['filtro']) && ($_GET['filtro']=='Gasto')){
 
 		$sql = "SELECT * from movimientos Where valor<=0 And usuario='$user'";
 		$rows = $db->query($sql);
+	}
 
-}
-
-
-if(isset($_GET['filtro'])&($_GET['filtro']=='Ingreso')){
-
+	//ingresos
+	if(isset($_GET['filtro'])&($_GET['filtro']=='Ingreso')){
 		
-	$sql = "SELECT * from movimientos Where valor>0 And usuario='$user'";
-	$rows = $db->query($sql);
+		$sql = "SELECT * from movimientos Where valor>0 And usuario='$user'";
+		$rows = $db->query($sql);
+	}
 
-}
+	//movimientos de los ultimos 7 dias
+	if(isset($_GET['filtro'])&($_GET['filtro']=='showLast7Days')){
 
-if(isset($_GET['filtro'])&($_GET['filtro']=='showLast7Days')){
+		$sieteDiasAtras= date('Y-m-d', strtotime('-7 days'));
+		$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
+		$rows = $db->query($sql);
+	}
 
-	$sieteDiasAtras= date('Y-m-d', strtotime('-7 days'));
-	$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
-	$rows = $db->query($sql);
+	//movimientos de los ultimos 30 dias
+	if(isset($_GET['filtro'])&($_GET['filtro']=='showLast30Days')){
 
-}
+		$sieteDiasAtras= date('Y-m-d', strtotime('-30 days'));
+		$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
+		$rows = $db->query($sql);
+	}
 
-if(isset($_GET['filtro'])&($_GET['filtro']=='showLast30Days')){
+	//los 5 gastos mas caros
+	if(isset($_GET['filtro'])&($_GET['filtro']=='los5MasCaros')){
 
-	$sieteDiasAtras= date('Y-m-d', strtotime('-30 days'));
-	$sql = "SELECT * from movimientos Where fecha>'$sieteDiasAtras' AND usuario='$user'";
-	$rows = $db->query($sql);
-
-}
-
-if(isset($_GET['filtro'])&($_GET['filtro']=='los5MasCaros')){
-
-	$sql = "SELECT * FROM movimientos WHERE usuario='$user' ORDER BY valor asc LIMIT 5";
-	$rows = $db->query($sql);
-
-}
+		$sql = "SELECT * FROM movimientos WHERE usuario='$user' ORDER BY valor asc LIMIT 5";
+		$rows = $db->query($sql);
+	}
 
 
 
@@ -70,7 +66,7 @@ if(isset($_GET['filtro'])&($_GET['filtro']=='los5MasCaros')){
     <title>Conga</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+  <?php include 'components/navbar.php' ?>
 	<div class="container">
 
 		<div class="row" style="margin-top: 70px;">
@@ -130,5 +126,5 @@ if(isset($_GET['filtro'])&($_GET['filtro']=='los5MasCaros')){
 				</div>
 				<?php endif; ?>
 				<?php
-                    include 'footer.php';
+                    include 'components/footer.php';
                 ?>

@@ -8,13 +8,15 @@ $tabla = $_GET['tabla'];
 
 
 
-function deleteItemDeTabla($id, $tabla, $user, $db){
+//function deleteItemDeTabla($id, $tabla){
+//global $db;
+//global $user;
 $sql = "DELETE from $tabla where id = '$id' AND usuario='$user'";
 $val = $db->query($sql);
 
 if($val){
 header("location: $tabla.php");
 };
-};
+//};
 
 ?>
