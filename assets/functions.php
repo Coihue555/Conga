@@ -9,8 +9,10 @@
 			return $rows;
 	}
 
+	//filtrar por gastos
+	function filtrarGastos(){
 
-
+	}
 
 
 
