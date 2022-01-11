@@ -10,19 +10,19 @@ $new_password_err = $confirm_password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate new password
-    if(empty(trim($_POST["new_password"]))){
+    if(empty($_POST["new_password"])){
         $new_password_err = "Ingrese el nuevo password.";     
-    } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $new_password_err = "El password debe tener al menos 6 caracteres.";
+    } elseif(strlen($_POST["new_password"]) < 8){
+        $new_password_err = "El password debe tener al menos 8 caracteres.";
     } else{
-        $new_password = trim($_POST["new_password"]);
+        $new_password = $_POST["new_password"];
     }
     
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
+    if(empty($_POST["confirm_password"])){
         $confirm_password_err = "Confirme el password.";
     } else{
-        $confirm_password = trim($_POST["confirm_password"]);
+        $confirm_password = $_POST["confirm_password"];
         if(empty($new_password_err) && ($new_password != $confirm_password)){
             $confirm_password_err = "Los passwords no coinciden.";
         }

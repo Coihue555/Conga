@@ -10,9 +10,9 @@ $username_err = $password_err = $confirm_password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validacion del username
-    if(empty(trim($_POST["username"]))){
+    if(empty($_POST["username"])){
         $username_err = "Por favor, ingrese un nombre de usuario.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', $_POST["username"])){
         $username_err = "El nombre de usuario debe tener solo letras, numeros y guiones bajos.";
     } else{
         // Preparacion de la consulta SELECT
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
             // Asignar parametros
-            $param_username = trim($_POST["username"]);
+            $param_username = $_POST["username"];
             
             // Ejecucion del la consulta preparada
             if(mysqli_stmt_execute($stmt)){
@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     $username_err = "Este usuario ya existe.";
                 } else{
-                    $username = trim($_POST["username"]);
+                    $username = $_POST["username"];
                 }
             } else{
                 echo "Oops! Algo salio mal. Intente nuevamente mas tarde.";
@@ -46,19 +46,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validar Password
-    if(empty(trim($_POST["password"]))){
+    if(empty($_POST["password"])){
         $password_err = "Por favor, ingrese un password.";     
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "El password debe tener al menos 6 caracteres.";
+    } elseif(strlen($_POST["password"]) < 8){
+        $password_err = "El password debe tener al menos 8 caracteres.";
     } else{
-        $password = trim($_POST["password"]);
+        $password = $_POST["password"];
     }
     
     // Validar Confirmar password
-    if(empty(trim($_POST["confirm_password"]))){
+    if(empty($_POST["confirm_password"])){
         $confirm_password_err = "Por favor, confirme el password.";     
     } else{
-        $confirm_password = trim($_POST["confirm_password"]);
+        $confirm_password = $_POST["confirm_password"];
         if(empty($password_err) && ($password != $confirm_password)){
             $confirm_password_err = "El password no coincide.";
         }
