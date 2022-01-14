@@ -17,16 +17,12 @@
 
 	//gastos
 	if(isset($_GET['filtro']) && ($_GET['filtro']=='Gasto')){
-
-		$sql = "SELECT * from movimientos Where valor<=0 And usuario='$user'";
-		$rows = $db->query($sql);
+		$rows = filtrarGastos();
 	}
 
 	//ingresos
 	if(isset($_GET['filtro'])&($_GET['filtro']=='Ingreso')){
-		
-		$sql = "SELECT * from movimientos Where valor>0 And usuario='$user'";
-		$rows = $db->query($sql);
+		$rows = filtrarIngresos();
 	}
 
 	//movimientos de los ultimos 7 dias

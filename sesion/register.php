@@ -1,14 +1,46 @@
 <?php
 // Incluir la conexion a la BD
-require_once "sesion/config.php";
+require_once "config.php";
  
 // Definicion de variables e inicializacion con valores vacios
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$email = $username = $password = $confirm_password = "";
+$email_err = $username_err = $password_err = $confirm_password_err = "";
  
 // Procesamiento de los datos cuando son enviados
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
+    // Validacion del email
+    if(empty($_POST["email"])){
+        $email_err = "Por favor, ingrese un email.";
+    } elseif(!preg_match("/^[^0-9][_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $_POST["email"])){
+        $email_err = "Ingrese un email valido";
+    } else{
+        // Preparacion de la consulta SELECT
+        $sql = "SELECT id FROM usuarios WHERE email = :email";
+        
+        if($stmt = $pdo->prepare($sql)){
+            // Union de variables a la consulta preparada como parametros
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            
+            // Asignar parametros
+            $param_email = $_POST["email"];
+            
+            // Ejecucion del la consulta preparada
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $email_err = "Este email ya esta registrado.";
+                } else{
+                    $email = $_POST["email"];
+                }
+            } else{
+                echo "Oops! Algo salio mal. Intente nuevamente mas tarde1.";
+            }
+    
+            // Cierra la consulta
+            unset($stmt);
+        }
+    }
+
     // Validacion del username
     if(empty($_POST["username"])){
         $username_err = "Por favor, ingrese un nombre de usuario.";
@@ -16,32 +48,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "El nombre de usuario debe tener solo letras, numeros y guiones bajos.";
     } else{
         // Preparacion de la consulta SELECT
-        $sql = "SELECT id FROM usuarios WHERE username = ?";
+        $sql = "SELECT id FROM usuarios WHERE username = :username";
         
-        if($stmt = mysqli_prepare($db, $sql)){
+        if($stmt = $pdo->prepare($sql)){
             // Union de variables a la consulta preparada como parametros
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             
             // Asignar parametros
             $param_username = $_POST["username"];
             
             // Ejecucion del la consulta preparada
-            if(mysqli_stmt_execute($stmt)){
-                /* guarda los resultados */
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1){
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
                     $username_err = "Este usuario ya existe.";
                 } else{
                     $username = $_POST["username"];
                 }
             } else{
-                echo "Oops! Algo salio mal. Intente nuevamente mas tarde.";
+                echo "Oops! Algo salio mal. Intente nuevamente mas tarde2.";
             }
 
             // Cierra la consulta
-            mysqli_stmt_close($stmt);
-            include 'sesion/createDBTable.php';
+            unset($stmt);
+            include 'createDBTable.php';
         }
     }
     
@@ -65,34 +94,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Revisar errores de entrada antes de insertar en la BD
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($email_err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Preparar la consulta INSERT
-        $sql = "INSERT INTO usuarios (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO usuarios (username, password, email) VALUES (:username, :password, :email)";
          
-        if($stmt = mysqli_prepare($db, $sql)){
+        if($stmt = $pdo->prepare($sql)){
             // Union de variables a la consulta preparada como parametros
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             
             // Asignar parametros
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Crear el hash del password
+            $param_email = $email;
             
             // Ejecucion del la consulta preparada
-            if(mysqli_stmt_execute($stmt)){
+            if($stmt->execute()){
                 // Redireccion a la pagina de Inicio de Sesion
-                header("location: index.php");
+                header("location: ../index.php");
             } else{
-                echo "Oops! Algo salio mal. Intente nuevamente mas tarde.";
+                echo "Oops! Algo salio mal. Intente nuevamente mas tarde3.";
             }
 
             // Cerrar consulta
-            mysqli_stmt_close($stmt);
+            unset($stmt);
         }
     }
     
     // Cerrar conexion
-    mysqli_close($db);
+    unset($pdo);
 }
 ?>
  
@@ -126,6 +158,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <p>Crea tu cuenta.</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                        <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                    </div>
+                    <br>
+                    <div class="form-group">
                         <label>Usuario</label>
                         <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                         <span class="invalid-feedback"><?php echo $username_err; ?></span>
@@ -147,7 +185,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <input type="submit" class="btn btn-primary" value="Confirmar">
                         <input type="reset" class="btn btn-secondary ml-2" value="Resetear">
                     </div>
-                    <p>Ya tenes una cuenta? <a href="index.php">Ingresa aqui</a>.</p>
+                    <p>Ya tenes una cuenta? <a href="../index.php">Ingresa aqui</a>.</p>
                 </form>
             </div>
         </div>
